@@ -1,0 +1,441 @@
+/* Design Patterns - Modular CSS for specific design elements */
+
+/* Diagonal Slice Pattern */
+.diagonal-slice {
+  position: relative;
+  overflow: hidden;
+}
+
+.diagonal-slice::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    135deg,
+    var(--color-primary) 0%,
+    var(--color-primary-dark) 100%
+  );
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 85%);
+  z-index: -1;
+}
+
+.diagonal-slice-reverse {
+  position: relative;
+  overflow: hidden;
+}
+
+.diagonal-slice-reverse::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    225deg,
+    var(--color-primary) 0%,
+    var(--color-primary-dark) 100%
+  );
+  clip-path: polygon(0 0, 100% 15%, 100% 100%, 0 100%);
+  z-index: -1;
+}
+
+.diagonal-slice-small {
+  position: relative;
+  overflow: hidden;
+}
+
+.diagonal-slice-small::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 30%;
+  height: 100%;
+  background: linear-gradient(
+    135deg,
+    var(--color-primary) 0%,
+    var(--color-primary-dark) 100%
+  );
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 90%);
+  z-index: -1;
+}
+
+/* Angled Corner Overlays */
+.angled-corner {
+  position: relative;
+  overflow: hidden;
+}
+
+.angled-corner::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 60px;
+  height: 60px;
+  background: var(--color-primary);
+  clip-path: polygon(100% 0, 0 0, 100% 100%);
+}
+
+.angled-corner-large {
+  position: relative;
+  overflow: hidden;
+}
+
+.angled-corner-large::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 80px;
+  height: 80px;
+  background: var(--color-primary);
+  clip-path: polygon(100% 0, 0 0, 100% 100%);
+}
+
+.angled-corner-left {
+  position: relative;
+  overflow: hidden;
+}
+
+.angled-corner-left::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 60px;
+  height: 60px;
+  background: var(--color-primary);
+  clip-path: polygon(0 0, 100% 0, 0 100%);
+}
+
+/* Floating Action Buttons */
+.floating-action {
+  position: fixed;
+  bottom: 2rem;
+  left: 2rem;
+  width: 56px;
+  height: 56px;
+  background: var(--color-accent-cyan);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-lg);
+  z-index: 50;
+  transition: all 0.3s ease;
+  color: white;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+}
+
+.floating-action:hover {
+  transform: scale(1.1);
+  box-shadow: var(--shadow-xl);
+  background: #00b8b8;
+}
+
+.floating-action-right {
+  left: auto;
+  right: 2rem;
+}
+
+.floating-action-small {
+  width: 48px;
+  height: 48px;
+}
+
+.floating-action-large {
+  width: 64px;
+  height: 64px;
+}
+
+/* Breadcrumb Navigation */
+.breadcrumb-angled {
+  background: var(--color-primary);
+  color: white;
+  padding: 0.5rem 1rem;
+  clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 100%, 0 100%);
+  display: inline-block;
+  text-decoration: none;
+  font-weight: var(--font-medium);
+  transition: all 0.3s ease;
+}
+
+.breadcrumb-angled:hover {
+  background: var(--color-primary-dark);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-sm);
+}
+
+.breadcrumb-angled-reverse {
+  background: var(--color-primary);
+  color: white;
+  padding: 0.5rem 1rem;
+  clip-path: polygon(20px 0, 100% 0, 100% 100%, 0 100%);
+  display: inline-block;
+  text-decoration: none;
+  font-weight: var(--font-medium);
+  transition: all 0.3s ease;
+}
+
+/* Geometric Shapes */
+.geometric-stripe {
+  position: relative;
+  overflow: hidden;
+}
+
+.geometric-stripe::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: repeating-linear-gradient(
+    45deg,
+    var(--color-primary),
+    var(--color-primary) 10px,
+    transparent 10px,
+    transparent 20px
+  );
+}
+
+.geometric-stripe-bottom {
+  position: relative;
+  overflow: hidden;
+}
+
+.geometric-stripe-bottom::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: repeating-linear-gradient(
+    45deg,
+    var(--color-primary),
+    var(--color-primary) 10px,
+    transparent 10px,
+    transparent 20px
+  );
+}
+
+/* Hero Section Patterns */
+.hero-diagonal {
+  position: relative;
+  background: linear-gradient(
+    135deg,
+    var(--color-neutral-50) 0%,
+    var(--color-neutral-100) 100%
+  );
+  overflow: hidden;
+}
+
+.hero-diagonal::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    135deg,
+    var(--color-primary) 0%,
+    var(--color-primary-dark) 100%
+  );
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 80%);
+  z-index: 0;
+}
+
+.hero-diagonal > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Card Overlay Patterns */
+.card-overlay {
+  position: relative;
+  overflow: hidden;
+}
+
+.card-overlay::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    135deg,
+    rgba(227, 30, 63, 0.1) 0%,
+    rgba(227, 30, 63, 0.05) 100%
+  );
+  z-index: 1;
+}
+
+.card-overlay > * {
+  position: relative;
+  z-index: 2;
+}
+
+/* Service Icon Patterns */
+.service-icon {
+  width: 60px;
+  height: 60px;
+  background: var(--color-neutral-100);
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.service-icon::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 20px;
+  height: 20px;
+  background: var(--color-primary);
+  clip-path: polygon(100% 0, 0 0, 100% 100%);
+}
+
+.service-icon-primary {
+  background: var(--color-primary);
+  color: white;
+}
+
+.service-icon-secondary {
+  background: var(--color-secondary);
+  color: white;
+}
+
+/* Team Card Patterns */
+.team-card {
+  position: relative;
+  background: white;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.team-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+.team-card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 40px;
+  height: 40px;
+  background: var(--color-primary);
+  clip-path: polygon(100% 0, 0 0, 100% 100%);
+}
+
+.team-card-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  position: relative;
+}
+
+.team-card-content {
+  padding: 1.5rem;
+  position: relative;
+}
+
+/* Navigation Patterns */
+.nav-angled {
+  background: var(--color-secondary);
+  color: white;
+  padding: 1rem 0;
+  position: relative;
+}
+
+.nav-angled::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: var(--color-primary);
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+}
+
+/* Section Dividers */
+.section-divider {
+  position: relative;
+  height: 2px;
+  background: var(--color-neutral-200);
+  margin: 3rem 0;
+}
+
+.section-divider::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 2px;
+  background: var(--color-primary);
+}
+
+.section-divider-angled {
+  position: relative;
+  height: 4px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--color-primary) 50%,
+    transparent 100%
+  );
+  margin: 3rem 0;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .floating-action {
+    bottom: 1rem;
+    left: 1rem;
+    width: 48px;
+    height: 48px;
+  }
+
+  .floating-action-right {
+    right: 1rem;
+  }
+
+  .hero-diagonal::before {
+    width: 100%;
+    height: 30%;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 70%);
+  }
+
+  .angled-corner::after,
+  .angled-corner-large::after {
+    width: 40px;
+    height: 40px;
+  }
+
+  .team-card::after {
+    width: 30px;
+    height: 30px;
+  }
+}
