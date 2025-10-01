@@ -5,7 +5,7 @@ import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import styles from "./InputVariant.module.css";
 
 export default function InputField({
-	type = "search", 
+	type = "search",
 	placeholder = "Type here…",
 	buttonText = "Subscribe",
 	onSubmit = () => {},
