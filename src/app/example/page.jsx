@@ -1,4 +1,6 @@
 import React from "react";
+import CustomButton from '@/components/ui/Button';
+
 
 const page = () => {
   return (
@@ -85,7 +87,7 @@ const page = () => {
         </div>
       </section>
 
-      {/* Button Components */}
+     {/* Button Components */}
       
     <section className="py-12 px-4">
       <div className="flex gap-4 justify-center">

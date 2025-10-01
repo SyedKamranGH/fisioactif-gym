@@ -1,20 +1,36 @@
+"use client";
 import React from "react";
+import { Button } from "@radix-ui/themes";
+import styles from "./Button.module.css";
 
-const SimpleButton = () => {
+const CustomButton = ({
+  label = "Consulta",
+  onClick,
+  icon,              
+  variant = "slanted",
+  size,
+  color,
+  buttonVariant,
+  ...rest           
+}) => {
   return (
-    <button
-      style={{
-        padding: "10px 20px",
-        fontSize: "16px",
-        cursor: "pointer",
-        borderRadius: "5px",
-        border: "1px solid #ccc",
-        backgroundColor: "#f0f0f0",
-      }}
+    <Button
+      onClick={onClick}
+      className={
+        variant === "search" ? styles.slantedSearchButton : styles.slantedButton
+      }
+      size={size}
+      variant={buttonVariant}
+      color={color}
+      {...rest}
     >
-      Submit
-    </button>
+      {icon && React.isValidElement(icon) && (
+        <span className={styles.iconWrapper}>{icon}</span>
+      )}
+
+      {variant !== "search" && label}
+    </Button>
   );
 };
 
-export default SimpleButton;
+export default CustomButton;
