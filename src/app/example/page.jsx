@@ -1,9 +1,6 @@
 "use client";
-import React from "react";
 import CustomButton from "@/components/ui/Button";
 import { Search } from "lucide-react";
-
-import React from "react";
 import InputField from "@/components/ui/Input";
 
 const page = () => {
