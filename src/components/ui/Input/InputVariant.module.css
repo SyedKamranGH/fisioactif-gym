@@ -7,12 +7,12 @@ input:invalid {
 
 .slanted {
   transform: skew(-19deg);
-  border-radius: 0.01rem; 
+  border-radius: 0.01rem;
   padding-left: 1rem;
   padding-right: 1rem;
 }
 
 .slanted input,
 .slanted::placeholder {
-  transform: skew(10deg); 
+  transform: skew(10deg);
 }

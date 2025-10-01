@@ -150,10 +150,15 @@ src/
 .btn {
   /* Base button styles */
 }
-.btn-primary, .btn-secondary, .btn-outline, .btn-ghost {
+.btn-primary,
+.btn-secondary,
+.btn-outline,
+.btn-ghost {
   /* Button variants */
 }
-.btn-sm, .btn-lg, .btn-xl {
+.btn-sm,
+.btn-lg,
+.btn-xl {
   /* Button sizes */
 }
 ```
@@ -167,7 +172,8 @@ src/
 .card-angled {
   /* Card with angled corner overlay */
 }
-.card-compact, .card-spacious {
+.card-compact,
+.card-spacious {
   /* Card padding variants */
 }
 ```
@@ -189,7 +195,10 @@ src/
 .alert {
   /* Base alert styling */
 }
-.alert-success, .alert-warning, .alert-error, .alert-info {
+.alert-success,
+.alert-warning,
+.alert-error,
+.alert-info {
   /* Alert variants */
 }
 ```
@@ -200,7 +209,12 @@ src/
 .badge {
   /* Base badge styling */
 }
-.badge-primary, .badge-secondary, .badge-success, .badge-warning, .badge-error, .badge-cyan {
+.badge-primary,
+.badge-secondary,
+.badge-success,
+.badge-warning,
+.badge-error,
+.badge-cyan {
   /* Badge variants */
 }
 ```
@@ -252,9 +266,15 @@ The system includes responsive utilities with breakpoints:
 Example:
 
 ```css
-.sm:text-lg { font-size: 1.125rem; }
-.md:grid-cols-3 { grid-template-columns: repeat(3, 1fr); }
-.lg:p-8 { padding: 2rem; }
+.sm:text-lg {
+  font-size: 1.125rem;
+}
+.md:grid-cols-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+.lg:p-8 {
+  padding: 2rem;
+}
 ```
 
 ## Usage Examples
@@ -262,14 +282,12 @@ Example:
 ### Hero Section
 
 ```jsx
-<section className="hero-diagonal py-12 px-4">
+<section className="hero-diagonal px-4 py-12">
   <div className="container mx-auto">
     <h1 className="hero-title-mixed mb-4">
       Welcome to <span className="text-primary">FisioActif</span> Gym
     </h1>
-    <p className="hero-subtitle">
-      Your premier destination for fitness and wellness
-    </p>
+    <p className="hero-subtitle">Your premier destination for fitness and wellness</p>
   </div>
 </section>
 ```
