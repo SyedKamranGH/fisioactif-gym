@@ -7,7 +7,7 @@ import styles from "./Button.module.css";
 const CustomButton = ({
   label = "Consulta",
   onClick,
-  icon,                  
+  icon,
   variant = "slanted",
   size,
   color,
@@ -19,9 +19,7 @@ const CustomButton = ({
   return (
     <Button
       onClick={onClick}
-      className={
-        variant === "search" ? styles.slantedSearchButton : styles.slantedButton
-      }
+      className={variant === "search" ? styles.slantedSearchButton : styles.slantedButton}
       size={size}
       variant={buttonVariant}
       color={color}
