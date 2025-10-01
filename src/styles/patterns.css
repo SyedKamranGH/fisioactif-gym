@@ -13,11 +13,7 @@
   right: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(
-    135deg,
-    var(--color-primary) 0%,
-    var(--color-primary-dark) 100%
-  );
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
   clip-path: polygon(0 0, 100% 0, 100% 100%, 0 85%);
   z-index: -1;
 }
@@ -34,11 +30,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(
-    225deg,
-    var(--color-primary) 0%,
-    var(--color-primary-dark) 100%
-  );
+  background: linear-gradient(225deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
   clip-path: polygon(0 0, 100% 15%, 100% 100%, 0 100%);
   z-index: -1;
 }
@@ -55,11 +47,7 @@
   right: 0;
   width: 30%;
   height: 100%;
-  background: linear-gradient(
-    135deg,
-    var(--color-primary) 0%,
-    var(--color-primary-dark) 100%
-  );
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
   clip-path: polygon(0 0, 100% 0, 100% 100%, 0 90%);
   z-index: -1;
 }
@@ -230,11 +218,7 @@
 /* Hero Section Patterns */
 .hero-diagonal {
   position: relative;
-  background: linear-gradient(
-    135deg,
-    var(--color-neutral-50) 0%,
-    var(--color-neutral-100) 100%
-  );
+  background: linear-gradient(135deg, var(--color-neutral-50) 0%, var(--color-neutral-100) 100%);
   overflow: hidden;
 }
 
@@ -245,11 +229,7 @@
   right: 0;
   width: 50%;
   height: 100%;
-  background: linear-gradient(
-    135deg,
-    var(--color-primary) 0%,
-    var(--color-primary-dark) 100%
-  );
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
   clip-path: polygon(0 0, 100% 0, 100% 100%, 0 80%);
   z-index: 0;
 }
@@ -272,11 +252,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(
-    135deg,
-    rgba(227, 30, 63, 0.1) 0%,
-    rgba(227, 30, 63, 0.05) 100%
-  );
+  background: linear-gradient(135deg, rgba(227, 30, 63, 0.1) 0%, rgba(227, 30, 63, 0.05) 100%);
   z-index: 1;
 }
 
@@ -399,12 +375,7 @@
 .section-divider-angled {
   position: relative;
   height: 4px;
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    var(--color-primary) 50%,
-    transparent 100%
-  );
+  background: linear-gradient(90deg, transparent 0%, var(--color-primary) 50%, transparent 100%);
   margin: 3rem 0;
   clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
 }
