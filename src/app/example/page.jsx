@@ -1,9 +1,11 @@
+"use client";
+
 import React from "react";
+import InputField from "@/components/ui/Input";
 
 const page = () => {
   return (
     <div className="min-h-screen bg-neutral-50">
-      {/* Hero Section with Diagonal Pattern */}
       <section className="hero-diagonal px-4 py-12">
         <div className="container mx-auto">
           <div className="max-w-4xl">
@@ -11,6 +13,37 @@ const page = () => {
               Welcome to <span className="text-primary">FisioActif</span> Gym
             </h1>
             <p className="hero-subtitle">Your premier destination for fitness and wellness</p>
+            <section className="bg-white px-4 py-12">
+              <div className="container mx-auto max-w-2xl">
+                <h2 className="heading-2 mb-8 text-center">Form Components</h2>
+                <form className="space-y-6">
+                  <div>
+                    <label className="label">Custom InputField (Search)</label>
+                    <InputField
+                      type="search"
+                      placeholder="Search something..."
+                      onSubmit={(val) => alert(`Searched: ${val}`)}
+                    />
+                  </div>
+
+                  <div>
+                    <label className="label">Custom InputField (Subscribe)</label>
+                    <InputField
+                      type="subscribe"
+                      placeholder="Enter your email"
+                      buttonText="Join Now"
+                      onSubmit={(val) => alert(`Subscribed: ${val}`)}
+                    />
+                  </div>
+
+                  <div>
+                    <label className="label">Custom InputField (Underline)</label>
+                    <InputField type="underline" placeholder="Enter username" />
+                  </div>
+                </form>
+              </div>
+            </section>
+
             <div className="mt-8 flex gap-4">
               <button className="btn btn-primary btn-lg">Get Started</button>
               <button className="btn btn-outline btn-lg">Learn More</button>
