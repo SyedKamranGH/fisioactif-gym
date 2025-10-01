@@ -1,4 +1,7 @@
 "use client";
+import React from "react";
+import CustomButton from "@/components/ui/Button";
+import { Search } from "lucide-react";
 
 import React from "react";
 import InputField from "@/components/ui/Input";
@@ -111,45 +114,22 @@ const page = () => {
       </section>
 
       {/* Button Components */}
+
       <section className="px-4 py-12">
-        <div className="container mx-auto">
-          <h2 className="heading-2 mb-8 text-center">Button Components</h2>
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
-            <div>
-              <h3 className="heading-3 mb-4">Button Variants</h3>
-              <div className="space-y-4">
-                <div className="flex flex-wrap gap-4">
-                  <button className="btn btn-primary">Primary</button>
-                  <button className="btn btn-secondary">Secondary</button>
-                  <button className="btn btn-outline">Outline</button>
-                  <button className="btn btn-ghost">Ghost</button>
-                </div>
-                <div className="flex flex-wrap gap-4">
-                  <button className="btn btn-primary btn-sm">Small</button>
-                  <button className="btn btn-primary">Regular</button>
-                  <button className="btn btn-primary btn-lg">Large</button>
-                  <button className="btn btn-primary btn-xl">Extra Large</button>
-                </div>
-              </div>
-            </div>
-            <div>
-              <h3 className="heading-3 mb-4">Button States</h3>
-              <div className="space-y-4">
-                <div className="flex flex-wrap gap-4">
-                  <button className="btn btn-primary">Normal</button>
-                  <button className="btn btn-primary" disabled>
-                    Disabled
-                  </button>
-                </div>
-                <div className="flex flex-wrap gap-4">
-                  <button className="btn btn-primary">
-                    <span className="spinner mr-2"></span>
-                    Loading
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
+        <div className="flex justify-center gap-4">
+          {/* Search Button */}
+          <CustomButton
+            variant="search"
+            icon={<Search />}
+            onClick={() => console.log("Search clicked")}
+          />
+
+          {/* Slanted Button */}
+          <CustomButton
+            label="Consulta"
+            variant="slanted"
+            onClick={() => console.log("Consulta clicked")}
+          />
         </div>
       </section>
 
