@@ -1,5 +1,8 @@
+"use client";
 import React from "react";
 import CustomButton from '@/components/ui/Button';
+import { Search } from "lucide-react";
+
 
 
 const page = () => {
@@ -87,12 +90,23 @@ const page = () => {
         </div>
       </section>
 
-     {/* Button Components */}
+      {/* Button Components */}
       
-    <section className="py-12 px-4">
+     <section className="py-12 px-4">
       <div className="flex gap-4 justify-center">
-        <CustomButton variant="search" />
-        <CustomButton label="Consulta" variant="slanted" />
+        {/* Search Button */}
+        <CustomButton 
+          variant="search" 
+          icon={<Search />} 
+          onClick={() => console.log("Search clicked")} 
+        />
+
+        {/* Slanted Button */}
+        <CustomButton 
+          label="Consulta" 
+          variant="slanted" 
+          onClick={() => console.log("Consulta clicked")}
+        />
       </div>
     </section>
 

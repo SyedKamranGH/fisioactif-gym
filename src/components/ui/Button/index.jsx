@@ -1,18 +1,21 @@
 "use client";
 import React from "react";
 import { Button } from "@radix-ui/themes";
+import { Search } from "lucide-react";
 import styles from "./Button.module.css";
 
 const CustomButton = ({
   label = "Consulta",
   onClick,
-  icon,              
+  icon,                  
   variant = "slanted",
   size,
   color,
   buttonVariant,
-  ...rest           
+  ...rest
 }) => {
+  const renderIcon = variant === "search" ? icon || <Search /> : null;
+
   return (
     <Button
       onClick={onClick}
@@ -24,11 +27,11 @@ const CustomButton = ({
       color={color}
       {...rest}
     >
-      {icon && React.isValidElement(icon) && (
-        <span className={styles.iconWrapper}>{icon}</span>
+      {variant === "search" && React.isValidElement(renderIcon) && (
+        <span className={styles.iconWrapper}>{renderIcon}</span>
       )}
 
-      {variant !== "search" && label}
+      {variant !== "search" && <span className={styles.label}>{label}</span>}
     </Button>
   );
 };
