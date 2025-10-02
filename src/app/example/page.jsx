@@ -1,13 +1,8 @@
 "use client";
-<<<<<<< HEAD
 import React from "react";
 import CustomButton from "@/components/ui/Button";
 import { Search } from "lucide-react";
 import Breadcrumbs from "@/components/ui/Breadcrumbs/index";
-=======
-import CustomButton from "@/components/ui/Button";
-import { Search } from "lucide-react";
->>>>>>> main
 import InputField from "@/components/ui/Input";
 import Calendar from "@/components/Features/Calendar";
 import Header from "@/components/layout/Header";
