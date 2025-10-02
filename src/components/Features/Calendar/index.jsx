@@ -5,6 +5,8 @@ import FullCalendar from "@fullcalendar/react";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
 
+import "./calendar.css";
+
 const Calendar = () => {
   const [events, setEvents] = useState([]);
 
@@ -76,7 +78,7 @@ const Calendar = () => {
         eventContent={(arg) => (
           <div className="fc-reminder">
             <div className="fc-reminder-title ">{arg.event.title}</div>
-            <div className="fc-reminder-subtitle">{arg.event.extendedProps.subtitle}</div>
+            <div className="fc-reminder-subtitle ">{arg.event.extendedProps.subtitle}</div>
           </div>
         )}
       />
