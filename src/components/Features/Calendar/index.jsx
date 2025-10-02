@@ -5,7 +5,7 @@ import FullCalendar from "@fullcalendar/react";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
 
-const CalendarPage = () => {
+const Calendar = () => {
   const [events, setEvents] = useState([]);
 
   const handleDateClick = (arg) => {
@@ -84,4 +84,4 @@ const CalendarPage = () => {
   );
 };
 
-export default CalendarPage;
+export default Calendar;

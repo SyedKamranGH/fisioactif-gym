@@ -2,7 +2,7 @@
 import CustomButton from "@/components/ui/Button";
 import { Search } from "lucide-react";
 import InputField from "@/components/ui/Input";
-import CalendarPage from "@/components/Features/Calendar";
+import Calendar from "@/components/Features/Calendar";
 
 const page = () => {
   return (
@@ -55,7 +55,7 @@ const page = () => {
 
       <div className="bg-white px-4 py-12">
         {" "}
-        <CalendarPage />
+        <Calendar />
       </div>
       {/* Typography Showcase */}
       <section className="px-4 py-12">
