@@ -65,10 +65,11 @@
 }
 /* Page Title Styling */
 .pageTitle {
-  font-family: "Poppins", "Inter", sans-serif; /* font family */
-  font-size: 32px; /* bada size */
-  font-weight: 700; /* bold */
-  text-align: center; /* center align */
-  margin-bottom: 16px; /* breadcrumbs se thoda gap */
-  color: white; /* optional, agar red background ke upar dikhe */
+  font-family: "Poppins", "Inter", sans-serif; 
+  font-size: 32px; 
+  font-weight: 700; 
+  text-align: center; 
+  margin-bottom: 16px; 
+  color: white; 
 }
+
