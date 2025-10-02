@@ -3,10 +3,195 @@ import CustomButton from "@/components/ui/Button";
 import { Search } from "lucide-react";
 import InputField from "@/components/ui/Input";
 import Calendar from "@/components/Features/Calendar";
+import Header from "@/components/layout/Header";
+import PageTitle from "@/components/layout/PageTitle";
 
 const page = () => {
   return (
     <div className="min-h-screen bg-neutral-50">
+      {/* Header Component Showcase */}
+      <Header />
+
+      <PageTitle title="Component Examples" breadcrumbs={["Home", "Examples"]} />
+
+      {/* Header Component Documentation */}
+      <section className="bg-white px-4 py-12">
+        <div className="container mx-auto">
+          <h2 className="heading-2 mb-8 text-center">Header Component</h2>
+          <div className="mx-auto max-w-4xl">
+            <div className="mb-8 rounded-lg bg-neutral-50 p-6">
+              <h3 className="heading-3 mb-4">Features</h3>
+              <ul className="space-y-2 text-neutral-700">
+                <li>
+                  • <strong>Two-tier design:</strong> Top information bar and main navigation
+                </li>
+                <li>
+                  • <strong>Responsive design:</strong> Mobile-first approach with hamburger menu
+                </li>
+                <li>
+                  • <strong>Custom components integration:</strong> Uses existing Button and Input
+                  components
+                </li>
+                <li>
+                  • <strong>Accessibility:</strong> Proper ARIA labels and keyboard navigation
+                </li>
+                <li>
+                  • <strong>Sticky positioning:</strong> Stays at top when scrolling
+                </li>
+              </ul>
+            </div>
+
+            <div className="mb-8 rounded-lg bg-neutral-50 p-6">
+              <h3 className="heading-3 mb-4">Structure</h3>
+              <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+                <div>
+                  <h4 className="heading-4 mb-2">Top Information Bar</h4>
+                  <ul className="space-y-1 text-sm text-neutral-600">
+                    <li>• Email contact with icon</li>
+                    <li>• Working hours with clock icon</li>
+                    <li>• Phone number with phone icon</li>
+                    <li>• Dark background with white text</li>
+                  </ul>
+                </div>
+                <div>
+                  <h4 className="heading-4 mb-2">Main Navigation Bar</h4>
+                  <ul className="space-y-1 text-sm text-neutral-600">
+                    <li>• Circular logo (Fisio Actif)</li>
+                    <li>• Navigation links with active state</li>
+                    <li>• Search button (custom slanted design)</li>
+                    <li>• Consulta button (custom slanted design)</li>
+                    <li>• Mobile hamburger menu</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div className="mb-8 rounded-lg bg-neutral-50 p-6">
+              <h3 className="heading-3 mb-4">Usage Example</h3>
+              <pre className="overflow-x-auto rounded bg-neutral-800 p-4 text-sm text-white">
+                {`import Header from "@/components/layout/Header";
+
+function App() {
+  return (
+    <div>
+      <Header />
+      {/* Your page content */}
+    </div>
+  );
+}`}
+              </pre>
+            </div>
+
+            <div className="rounded-lg bg-neutral-50 p-6">
+              <h3 className="heading-3 mb-4">Responsive Behavior</h3>
+              <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+                <div className="text-center">
+                  <div className="mb-2 text-sm font-medium">Desktop (md+)</div>
+                  <div className="text-xs text-neutral-600">Full navigation visible</div>
+                </div>
+                <div className="text-center">
+                  <div className="mb-2 text-sm font-medium">Tablet (sm-md)</div>
+                  <div className="text-xs text-neutral-600">
+                    Search and Consulta buttons visible
+                  </div>
+                </div>
+                <div className="text-center">
+                  <div className="mb-2 text-sm font-medium">Mobile (&lt;sm)</div>
+                  <div className="text-xs text-neutral-600">
+                    Hamburger menu with collapsible navigation
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* PageTitle Component Documentation */}
+      <section className="px-4 py-12">
+        <div className="container mx-auto">
+          <h2 className="heading-2 mb-8 text-center">PageTitle Component</h2>
+          <div className="mx-auto max-w-4xl">
+            <div className="mb-8 rounded-lg bg-neutral-50 p-6">
+              <h3 className="heading-3 mb-4">Features</h3>
+              <ul className="space-y-2 text-neutral-700">
+                <li>
+                  • <strong>Page title display:</strong> Large, centered title text
+                </li>
+                <li>
+                  • <strong>Breadcrumb navigation:</strong> Shows current page path
+                </li>
+                <li>
+                  • <strong>Active state styling:</strong> Last breadcrumb highlighted in red
+                </li>
+                <li>
+                  • <strong>Responsive typography:</strong> Scales appropriately on different screen
+                  sizes
+                </li>
+                <li>
+                  • <strong>Customizable:</strong> Accepts custom className for additional styling
+                </li>
+              </ul>
+            </div>
+
+            <div className="mb-8 rounded-lg bg-neutral-50 p-6">
+              <h3 className="heading-3 mb-4">Props</h3>
+              <div className="overflow-x-auto">
+                <table className="w-full text-sm">
+                  <thead>
+                    <tr className="border-b border-neutral-200">
+                      <th className="py-2 text-left font-medium">Prop</th>
+                      <th className="py-2 text-left font-medium">Type</th>
+                      <th className="py-2 text-left font-medium">Default</th>
+                      <th className="py-2 text-left font-medium">Description</th>
+                    </tr>
+                  </thead>
+                  <tbody className="text-neutral-600">
+                    <tr className="border-b border-neutral-100">
+                      <td className="py-2 font-mono">title</td>
+                      <td className="py-2">string</td>
+                      <td className="py-2">-</td>
+                      <td className="py-2">The main page title to display</td>
+                    </tr>
+                    <tr className="border-b border-neutral-100">
+                      <td className="py-2 font-mono">breadcrumbs</td>
+                      <td className="py-2">string[]</td>
+                      <td className="py-2">[]</td>
+                      <td className="py-2">Array of breadcrumb items</td>
+                    </tr>
+                    <tr>
+                      <td className="py-2 font-mono">className</td>
+                      <td className="py-2">string</td>
+                      <td className="py-2">""</td>
+                      <td className="py-2">Additional CSS classes</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div className="rounded-lg bg-neutral-50 p-6">
+              <h3 className="heading-3 mb-4">Usage Example</h3>
+              <pre className="overflow-x-auto rounded bg-neutral-800 p-4 text-sm text-white">
+                {`import PageTitle from "@/components/layout/PageTitle";
+
+function MyPage() {
+  return (
+    <div>
+      <PageTitle 
+        title="My Page" 
+        breadcrumbs={["Home", "Section", "My Page"]} 
+      />
+      {/* Your page content */}
+    </div>
+  );
+}`}
+              </pre>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section className="hero-diagonal px-4 py-12">
         <div className="container mx-auto">
           <div className="max-w-4xl">
