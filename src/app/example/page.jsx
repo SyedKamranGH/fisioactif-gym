@@ -2,8 +2,7 @@
 import React from "react";
 import CustomButton from "@/components/ui/Button";
 import { Search } from "lucide-react";
-
-import React from "react";
+import Breadcrumbs from "@/components/ui/Breadcrumbs/index";
 import InputField from "@/components/ui/Input";
 
 const page = () => {
@@ -132,6 +131,10 @@ const page = () => {
           />
         </div>
       </section>
+
+      <div>
+        <Breadcrumbs breadcrumbItems={["Home", "Equipa"]} />
+      </div>
 
       {/* Card Components */}
       <section className="bg-white px-4 py-12">
