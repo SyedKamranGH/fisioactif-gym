@@ -113,10 +113,7 @@ Header/
 ### NavigationLinks
 
 ```jsx
-<NavigationLinks 
-  items={navigationItems} 
-  className="custom-styles" 
-/>
+<NavigationLinks items={navigationItems} className="custom-styles" />
 ```
 
 - `items`: Array of navigation items
@@ -125,7 +122,7 @@ Header/
 ### ActionButtons
 
 ```jsx
-<ActionButtons 
+<ActionButtons
   onSearchClick={handleSearch}
   onConsultaClick={handleConsulta}
   className="custom-styles"
