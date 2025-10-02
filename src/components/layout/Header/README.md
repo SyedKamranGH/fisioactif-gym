@@ -1,33 +1,160 @@
-# Header Component
+# Refactored Header Components
 
-A responsive header component designed for the Fisio Actif website, following SOLID principles and modern React best practices.
+A fully responsive header component system following SOLID principles with maximum reusability and clean code architecture.
 
-## Features
+## 🏗️ Architecture Overview
 
-- **Two-tier design**: Top information bar and main navigation
-- **Responsive design**: Mobile-first approach with hamburger menu
-- **Custom components integration**: Uses existing Button and Input components
-- **Accessibility**: Proper ARIA labels and keyboard navigation
-- **TypeScript ready**: Full type safety support
+The header is split into smaller, focused components following the Single Responsibility Principle:
 
-## Structure
+### Component Structure
 
-### Top Information Bar
+```
+Header/
+├── index.jsx              # Main Header component (orchestrator)
+├── TopInfoBar.jsx         # Contact information bar
+├── Logo.jsx              # Logo component
+├── NavigationLinks.jsx   # Navigation menu items
+├── ActionButtons.jsx     # Search and Consulta buttons
+├── MobileMenu.jsx        # Mobile navigation menu
+├── Header.module.css     # CSS modules for styling
+└── README.md            # This documentation
+```
 
-- Email contact with icon
-- Working hours with clock icon
-- Phone number with phone icon
-- Dark background with white text
+## 🎯 SOLID Principles Implementation
 
-### Main Navigation Bar
+### 1. Single Responsibility Principle (SRP)
 
-- Circular logo (Fisio Actif)
-- Navigation links with active state indication
-- Search button (custom slanted design)
-- Consulta button (custom slanted design)
-- Mobile hamburger menu
+- **TopInfoBar**: Only handles contact information display
+- **Logo**: Only handles logo rendering
+- **NavigationLinks**: Only handles navigation menu items
+- **ActionButtons**: Only handles search and consulta buttons
+- **MobileMenu**: Only handles mobile navigation
 
-## Usage
+### 2. Open/Closed Principle (OCP)
+
+- Components accept props for customization
+- Easy to extend without modifying existing code
+- CSS modules allow styling extensions
+
+### 3. Liskov Substitution Principle (LSP)
+
+- All components can be replaced with compatible implementations
+- Props interfaces are consistent and predictable
+
+### 4. Interface Segregation Principle (ISP)
+
+- Components only receive props they actually use
+- Clean, focused interfaces for each component
+
+### 5. Dependency Inversion Principle (DIP)
+
+- Components depend on abstractions (props) not concrete implementations
+- Easy to test and mock
+
+## 📱 Responsive Design
+
+### Desktop (md+)
+
+- Full navigation visible
+- Search and Consulta buttons visible
+- Logo properly positioned
+- Slanted navigation bar
+
+### Tablet (sm-md)
+
+- Reduced spacing between components
+- Search and Consulta buttons visible
+- Navigation links hidden on smaller tablets
+
+### Mobile (<sm)
+
+- Hamburger menu icon
+- Vertical mobile menu with:
+  - Logo at the top
+  - Navigation items as sidebar
+  - Search icon and Consulta button at bottom
+
+## 🎨 Styling Approach
+
+### CSS Modules
+
+- `Header.module.css` contains all header-specific styles
+- Scoped styles prevent conflicts
+- Responsive breakpoints defined in CSS
+- Tailwind classes for utility styling
+
+### Global CSS Variables
+
+- Uses existing design system colors
+- Consistent spacing and typography
+- Maintains brand consistency
+
+## 🔧 Component APIs
+
+### TopInfoBar
+
+```jsx
+<TopInfoBar />
+```
+
+- No props required
+- Displays contact information
+- Fully responsive
+
+### Logo
+
+```jsx
+<Logo className="custom-class" />
+```
+
+- Optional className prop
+- Configurable size and styling
+
+### NavigationLinks
+
+```jsx
+<NavigationLinks 
+  items={navigationItems} 
+  className="custom-styles" 
+/>
+```
+
+- `items`: Array of navigation items
+- `className`: Optional custom styling
+
+### ActionButtons
+
+```jsx
+<ActionButtons 
+  onSearchClick={handleSearch}
+  onConsultaClick={handleConsulta}
+  className="custom-styles"
+/>
+```
+
+- `onSearchClick`: Search button handler
+- `onConsultaClick`: Consulta button handler
+- `className`: Optional custom styling
+
+### MobileMenu
+
+```jsx
+<MobileMenu
+  isOpen={isMobileMenuOpen}
+  navigationItems={items}
+  onItemClick={handleItemClick}
+  onSearchClick={handleSearch}
+  onConsultaClick={handleConsulta}
+/>
+```
+
+- `isOpen`: Controls menu visibility
+- `navigationItems`: Array of navigation items
+- `onItemClick`: Handler for menu item clicks
+- `onSearchClick`: Search button handler
+- `onConsultaClick`: Consulta button handler
+
+## 🚀 Usage
 
 ```jsx
 import Header from "@/components/layout/Header";
@@ -42,41 +169,27 @@ function App() {
 }
 ```
 
-## Props
+## 🧪 Testing
 
-The Header component accepts no props and manages its own state internally.
+Each component can be tested independently:
 
-## Mobile Responsiveness
+- Mock props easily
+- Test individual functionality
+- Isolated component behavior
+- Easy to write unit tests
 
-- **Desktop (md+)**: Full navigation visible
-- **Tablet (sm-md)**: Search and Consulta buttons visible
-- **Mobile (<sm)**: Hamburger menu with collapsible navigation
+## 🔄 Maintenance
 
-## Styling
+- Easy to modify individual components
+- Clear separation of concerns
+- Reusable across different pages
+- Consistent styling approach
+- Scalable architecture
 
-Uses Tailwind CSS classes and custom CSS variables defined in `globals.css`:
+## 📊 Performance
 
-- Primary color: `#e31e3f` (red)
-- Neutral colors: Various shades of gray
-- Custom spacing and typography scales
-
-## Dependencies
-
-- `next/image` - Optimized image loading
-- `lucide-react` - Icons
-- `@radix-ui/themes` - Button component base
-- Custom Button and Input components
-
-## Accessibility
-
-- Proper semantic HTML structure
-- ARIA labels for interactive elements
-- Keyboard navigation support
-- Focus management for mobile menu
-- Screen reader friendly
-
-## Browser Support
-
-- Modern browsers (Chrome, Firefox, Safari, Edge)
-- Mobile browsers (iOS Safari, Chrome Mobile)
-- Responsive design works on all screen sizes
+- Code splitting at component level
+- Lazy loading capabilities
+- Minimal re-renders
+- Optimized CSS modules
+- Clean dependency tree
