@@ -4,6 +4,10 @@
 @import "../styles/patterns.css";
 @import "../styles/utilities.css";
 @import "@radix-ui/themes/styles.css";
+<<<<<<< HEAD
+=======
+@import "../components//Features//Calendar/calendar.module.css";
+>>>>>>> main
 
 :root {
   /* Color System */
