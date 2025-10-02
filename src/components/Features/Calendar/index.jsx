@@ -16,10 +16,14 @@ const CalendarPage = () => {
     const start = arg.date;
     const end = new Date(start.getTime() + 60 * 60 * 1000);
 
-    let mergedEvent = { title, extendedProps: { subtitle }, start, end };
+    let mergedEvent = { id: String(Date.now()), title, start, end, extendedProps: { subtitle } };
 
     const updatedEvents = events.reduce((acc, ev) => {
-      if (ev.title === title && ev.extendedProps.subtitle === subtitle) {
+      if (
+        ev.title === title &&
+        ev.extendedProps.subtitle === subtitle &&
+        ev.start.getDay() === start.getDay()
+      ) {
         if (
           (start <= ev.end && end >= ev.start) ||
           ev.end.getTime() === start.getTime() ||
@@ -43,7 +47,7 @@ const CalendarPage = () => {
 
   const handleEventClick = (arg) => {
     if (window.confirm(`Delete reminder "${arg.event.title}"?`)) {
-      setEvents(events.filter((e) => e !== arg.event._def.extendedProps._rawEvent));
+      setEvents(events.filter((e) => e.id !== arg.event.id));
     }
   };
 
@@ -53,19 +57,13 @@ const CalendarPage = () => {
     return `${startHour}:00 - ${endHour}:00`;
   };
 
-  const now = new Date();
-  const currentHour = now.getHours();
-  const minTime = `${currentHour.toString().padStart(2, "0")}:00:00`;
-  const maxTime = `${((currentHour + 12) % 24).toString().padStart(2, "0")}:00:00`;
-
   return (
-    <div style={{ maxWidth: "1000px", margin: "0 auto", padding: "2rem" }}>
+    <div style={{ maxWidth: "1100px", margin: "0 auto", padding: "2rem" }}>
       <FullCalendar
         plugins={[timeGridPlugin, interactionPlugin]}
         initialView="timeGridWeek"
+        headerToolbar={false}
         allDaySlot={false}
-        slotMinTime={minTime}
-        slotMaxTime={maxTime}
         slotDuration="01:00:00"
         slotLabelContent={slotLabelContent}
         dayHeaderFormat={{ weekday: "long" }}
@@ -75,11 +73,9 @@ const CalendarPage = () => {
         editable={true}
         selectable={true}
         height="auto"
-        dayHeaderClassNames={() => "fc-custom-day-header"}
-        slotLabelClassNames={() => "fc-custom-slot-label"}
         eventContent={(arg) => (
           <div className="fc-reminder">
-            <div className="fc-reminder-title">{arg.event.title}</div>
+            <div className="fc-reminder-title ">{arg.event.title}</div>
             <div className="fc-reminder-subtitle">{arg.event.extendedProps.subtitle}</div>
           </div>
         )}

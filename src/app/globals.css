@@ -4,7 +4,7 @@
 @import "../styles/patterns.css";
 @import "../styles/utilities.css";
 @import "@radix-ui/themes/styles.css";
-@import "../components//Features//Calendar/calendar.css";
+@import "../components//Features//Calendar/calendar.module.css";
 
 :root {
   /* Color System */
