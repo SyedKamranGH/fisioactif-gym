@@ -1,0 +1,114 @@
+.fc .fc-timegrid-slot-label {
+  background-color: black !important;
+  color: rgba(255, 255, 255, 0.673) !important;
+  font-weight: 500 !important;
+  font-size: 12px !important;
+  text-align: right !important;
+  padding-right: 8px !important;
+  width: 150px !important;
+  border-right: 1px solid rgba(255, 255, 255, 0.2) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2) !important;
+}
+
+.fc .fc-timegrid-col {
+  min-width: 190px !important;
+  border-left: 1px solid #e0e0e0;
+  background-color: var(--color-neutral-100) !important;
+}
+
+.fc .fc-timegrid-col.fc-day-today {
+  background-color: var(--color-neutral-100) !important;
+}
+
+.fc .fc-timegrid-slot {
+  height: 55px !important;
+}
+
+.fc .fc-col-header {
+  background-color: var(--color-primary) !important;
+  border: none !important;
+}
+
+.fc .fc-col-header-cell {
+  color: white !important;
+  font-weight: bold !important;
+  text-align: center !important;
+  font-size: 14px !important;
+  padding: 8px 0 !important;
+  border: none !important;
+}
+
+.fc .fc-col-header-cell > div {
+  border: none !important;
+}
+
+.fc .fc-event-title {
+  font-size: 14px !important;
+  padding: 4px !important;
+}
+
+.fc .fc-col-header .fc-timegrid-axis {
+  border: none !important;
+  background-color: var(--color-primary) !important;
+}
+
+.fc-reminder {
+  display: flex !important;
+  flex-direction: column;
+  justify-content: center !important;
+  align-items: center !important;
+  text-align: center;
+  padding: 4px 6px;
+  width: 100% !important;
+  height: 100% !important;
+  box-sizing: border-box;
+  background-color: var(--color-neutral-100) !important;
+  border: none !important;
+  pointer-events: none;
+}
+
+.fc-reminder-title {
+  color: red !important;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 1.2;
+}
+
+.fc-reminder-subtitle {
+  color: grey !important;
+  font-size: 12px;
+  line-height: 1.2;
+}
+
+.fc-event-time {
+  display: none !important;
+}
+
+.fc-event.fc-reminder {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+
+.fc-timegrid-event {
+  border: 1px solid var(--color-neutral-100) !important;
+  box-shadow: none !important;
+  background-color: var(--color-neutral-100) !important;
+  border-radius: 0.1px !important;
+  margin: 1px 0 !important;
+  z-index: 3;
+}
+
+.fc-timegrid-event .fc-event-main {
+  background-color: transparent !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.fc-event {
+  border: 1px solid var(--color-neutral-100) !important;
+  margin-left: 0px;
+}
