@@ -4,7 +4,6 @@ import React, { useState } from "react";
 import FullCalendar from "@fullcalendar/react";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
-import "./Calendar.css";
 
 const CalendarPage = () => {
   const [events, setEvents] = useState([]);
@@ -18,7 +17,6 @@ const CalendarPage = () => {
     const end = new Date(start.getTime() + 60 * 60 * 1000);
 
     let mergedEvent = { title, extendedProps: { subtitle }, start, end };
-    let merged = false;
 
     const updatedEvents = events.reduce((acc, ev) => {
       if (ev.title === title && ev.extendedProps.subtitle === subtitle) {
@@ -27,7 +25,6 @@ const CalendarPage = () => {
           ev.end.getTime() === start.getTime() ||
           ev.start.getTime() === end.getTime()
         ) {
-          merged = true;
           mergedEvent = {
             ...ev,
             start: new Date(Math.min(ev.start.getTime(), start.getTime())),

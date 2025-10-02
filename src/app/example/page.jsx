@@ -2,7 +2,7 @@
 import CustomButton from "@/components/ui/Button";
 import { Search } from "lucide-react";
 import InputField from "@/components/ui/Input";
-import CalendarPage from "../[locale]/Calendar/page";
+import CalendarPage from "@/components/Features/Calendar";
 
 const page = () => {
   return (
