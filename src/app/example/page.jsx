@@ -7,12 +7,30 @@ import InputField from "@/components/ui/Input";
 import Calendar from "@/components/Features/Calendar";
 import Header from "@/components/layout/Header";
 import PageTitle from "@/components/layout/PageTitle";
+import SectionLayout from "@/components/layout/SectionLayout";
 
 const page = () => {
   return (
     <div className="min-h-screen bg-neutral-50">
       {/* Header Component Showcase */}
       <Header />
+
+      <SectionLayout
+        backgroundImage="/Images/SectionLayoutBackground.png"
+        padding="py-24"
+        height="min-h-[640px]"
+      >
+        <div className="space-y-6 px-4 py-32 text-center text-black">
+          <h1 className="text-5xl font-bold">
+            Welcome to <span className="text-primary">FisioActif</span> Gym
+          </h1>
+          <p className="text-xl">Your premier destination for fitness and wellness</p>
+          <div className="mt-4 flex justify-center gap-4">
+            <button className="btn btn-primary btn-lg">Get Started</button>
+            <button className="btn btn-outline btn-lg">Learn More</button>
+          </div>
+        </div>
+      </SectionLayout>
 
       <PageTitle title="Component Examples" breadcrumbs={["Home", "Examples"]} />
 
