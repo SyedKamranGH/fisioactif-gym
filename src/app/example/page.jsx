@@ -1,7 +1,8 @@
 "use client";
-import React from "react";
+import React, { useCallback } from "react";
+import useEmblaCarousel from "embla-carousel-react";
 import CustomButton from "@/components/ui/Button";
-import { Search } from "lucide-react";
+import { Search, ChevronLeft, ChevronRight } from "lucide-react";
 import Breadcrumbs from "@/components/ui/Breadcrumbs/index";
 import InputField from "@/components/ui/Input";
 import Calendar from "@/components/Features/Calendar";
@@ -10,6 +11,38 @@ import PageTitle from "@/components/layout/PageTitle";
 import SectionLayout from "@/components/layout/SectionLayout";
 
 const page = () => {
+  // Team data for the carousel (8 team members)
+  const teamMembers = [
+    { name: "John Doe", role: "Fitness Trainer", image: "/Icons/icon_1.png" },
+    { name: "Jane Smith", role: "Nutritionist", image: "/Icons/icon_2.png" },
+    { name: "Mike Johnson", role: "Yoga Instructor", image: "/Icons/icon_3.png" },
+    { name: "Sarah Wilson", role: "Personal Trainer", image: "/Icons/icon_4.png" },
+    { name: "David Brown", role: "Pilates Instructor", image: "/Icons/icon_5.png" },
+    { name: "Lisa Garcia", role: "Strength Coach", image: "/Icons/icon_6.png" },
+    { name: "Tom Anderson", role: "Wellness Coach", image: "/Icons/icon_7.png" },
+    { name: "Emma Davis", role: "Cardio Specialist", image: "/Icons/icon_8.png" },
+  ];
+
+  // Embla Carousel setup
+  const [emblaRef, emblaApi] = useEmblaCarousel({
+    loop: true,
+    align: "start",
+    slidesToScroll: 1,
+    breakpoints: {
+      "(min-width: 640px)": { slidesToScroll: 2 },
+      "(min-width: 768px)": { slidesToScroll: 3 },
+      "(min-width: 1024px)": { slidesToScroll: 4 },
+    },
+  });
+
+  const scrollPrev = useCallback(() => {
+    if (emblaApi) emblaApi.scrollPrev();
+  }, [emblaApi]);
+
+  const scrollNext = useCallback(() => {
+    if (emblaApi) emblaApi.scrollNext();
+  }, [emblaApi]);
+
   return (
     <div className="min-h-screen bg-neutral-50">
       {/* Header Component Showcase */}
@@ -246,30 +279,47 @@ const page = () => {
             </div>
           </div>
 
-          {/* Team Cards */}
+          {/* Team Cards Carousel */}
           <div className="mb-12">
-            <h3 className="heading-3 mb-6">Team Cards</h3>
-            <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-              <div className="team-card">
-                <div className="team-card-image bg-neutral-200"></div>
-                <div className="team-card-content">
-                  <h4 className="heading-4 mb-2">John Doe</h4>
-                  <p className="body-small text-neutral-600">Fitness Trainer</p>
-                </div>
+            <div className="mb-6 flex items-center justify-between">
+              <h3 className="heading-3">Team Cards</h3>
+              <div className="flex gap-2">
+                <button
+                  onClick={scrollPrev}
+                  className="flex h-10 w-10 items-center justify-center rounded-full bg-white shadow-md transition-colors hover:bg-neutral-50"
+                  aria-label="Previous team members"
+                >
+                  <ChevronLeft className="h-5 w-5" />
+                </button>
+                <button
+                  onClick={scrollNext}
+                  className="flex h-10 w-10 items-center justify-center rounded-full bg-white shadow-md transition-colors hover:bg-neutral-50"
+                  aria-label="Next team members"
+                >
+                  <ChevronRight className="h-5 w-5" />
+                </button>
               </div>
-              <div className="team-card">
-                <div className="team-card-image bg-neutral-200"></div>
-                <div className="team-card-content">
-                  <h4 className="heading-4 mb-2">Jane Smith</h4>
-                  <p className="body-small text-neutral-600">Nutritionist</p>
-                </div>
-              </div>
-              <div className="team-card">
-                <div className="team-card-image bg-neutral-200"></div>
-                <div className="team-card-content">
-                  <h4 className="heading-4 mb-2">Mike Johnson</h4>
-                  <p className="body-small text-neutral-600">Yoga Instructor</p>
-                </div>
+            </div>
+
+            <div className="embla overflow-hidden" ref={emblaRef}>
+              <div className="embla__container flex">
+                {teamMembers.map((member, index) => (
+                  <div key={index} className="embla__slide min-w-0 flex-[0_0_auto] pl-4">
+                    <div className="team-card">
+                      <div className="team-card-image bg-neutral-200">
+                        <img
+                          src={member.image}
+                          alt={member.name}
+                          className="h-full w-full rounded-t-lg object-cover"
+                        />
+                      </div>
+                      <div className="team-card-content">
+                        <h4 className="heading-4 mb-2">{member.name}</h4>
+                        <p className="body-small text-neutral-600">{member.role}</p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
           </div>

@@ -27,6 +27,7 @@
     "bcryptjs": "^2.4.3",
     "clsx": "^2.1.1",
     "date-fns": "^3.6.0",
+    "embla-carousel-react": "^8.6.0",
     "framer-motion": "^10.18.0",
     "jose": "^5.10.0",
     "lucide-react": "^0.303.0",
