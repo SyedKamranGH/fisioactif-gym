@@ -1,25 +1,28 @@
-/* Normal Slanted Button */
-.slantedButton {
+/* Base Button - shared styles */
+.Button {
   position: relative;
-  padding: 0.75rem 2.5rem;
-  font-weight: 600;
-  color: white;
-  background-color: #dc2626;
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
-  transition: background-color 0.3s ease;
-  clip-path: polygon(8% 0%, 100% 0%, 92% 100%, 0% 100%);
-  overflow: hidden;
-  cursor: pointer;
   display: flex;
   align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  cursor: pointer;
+  overflow: hidden;
+  border: none;
+  transition:
+    background-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+/* Slanted Button */
+.Button--slanted {
+  padding: 0.75rem 2.5rem;
+  color: white;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
   gap: 8px;
+  clip-path: polygon(8% 0%, 100% 0%, 92% 100%, 0% 100%);
 }
 
-.slantedButton:hover {
-  background-color: #b91c1c;
-}
-
-.slantedButton::after {
+.Button--slanted::after {
   content: "";
   position: absolute;
   top: 0;
@@ -31,34 +34,35 @@
   z-index: 1;
 }
 
-/* Slanted Search Button */
-.slantedSearchButton {
-  position: relative;
-  padding: 0.75rem 1rem !important;
-  font-weight: 600 !important;
-  color: rgb(253, 247, 247) !important;
-  background-color: rgb(173, 169, 169) !important;
-  box-shadow: 0 5px 10px -3px rgba(0, 0, 0, 0.2) !important;
-  transition: background-color 0.3s ease;
-  cursor: pointer;
-  transform: skewX(-15deg);
-  overflow: hidden;
+/* Search Button (slanted but no ::after) */
+.Button--search {
+  padding: 0.75rem 1rem;
+  height: 3rem;
+  width: 3.5rem;
+  color: white;
+  background-color: grey;
+  transform: skewX(-12deg);
   display: flex;
-  justify-content: center;
   align-items: center;
-  height: 3rem !important;
-  width: 3.5rem !important;
-  border: none !important;
+  justify-content: center;
 }
 
-.slantedSearchButton:hover {
-  background-color: #f0f0f0 !important;
+/* Social Button (not slanted) */
+.Button--social {
+  padding: 0.75rem 1.5rem;
+  height: 3rem;
+  width: 3.5rem;
+  color: white;
+  background: red;
 }
 
-/* Icon Styling */
+.Button--social:hover {
+  opacity: 0.9;
+}
+
+/* Icon wrapper for search/social */
 .iconWrapper {
   font-size: 1.5rem;
-  font-weight: bold;
   display: flex;
   align-items: center;
   justify-content: center;
