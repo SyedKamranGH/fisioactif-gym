@@ -21,7 +21,7 @@ const page = () => {
         padding="py-0"
         height="min-h-screen"
       >
-        <div className="space-y-6 px-4 py-32 text-center text-white">
+        <div className="space-y-6 px-4 py-32 text-center text-black">
           <h1 className="text-5xl font-bold">
             Welcome to <span className="text-primary">FisioActif</span> Gym
           </h1>
