@@ -4,6 +4,7 @@
 @import "../styles/patterns.css";
 @import "../styles/utilities.css";
 @import "@radix-ui/themes/styles.css";
+@import "../components/ui/DialogBox/dialog.module.css";
 
 :root {
   /* Color System */
