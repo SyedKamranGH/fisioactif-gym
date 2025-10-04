@@ -2,17 +2,21 @@
 import React from "react";
 import CustomButton from "@/components/ui/Button";
 import { Search } from "lucide-react";
+import { ShoppingCart, Headset } from "lucide-react";
 import Breadcrumbs from "@/components/ui/Breadcrumbs/index";
 import InputField from "@/components/ui/Input";
 import Calendar from "@/components/Features/Calendar";
 import Header from "@/components/layout/Header";
 import PageTitle from "@/components/layout/PageTitle";
 import SectionLayout from "@/components/layout/SectionLayout";
+import FloatingActionButton from "@/components/ui/Floating Action Button/index";
 
 const page = () => {
+  const handleAddToCart = () => {
+    alert("Item added to cart!");
+  };
   return (
     <div className="min-h-screen bg-neutral-50">
-      {/* Header Component Showcase */}
       <Header />
 
       <SectionLayout
@@ -378,11 +382,20 @@ const page = () => {
           </div>
         </div>
       </section>
-
-      {/* Floating Action Button */}
-      <a href="#" className="floating-action">
-        <span className="text-2xl">+</span>
-      </a>
+      <section>
+        <div className="fixed bottom-16 right-16 flex flex-col gap-4">
+          <FloatingActionButton
+            icon={<ShoppingCart />}
+            variant="blue"
+            onClick={() => alert("Blue FAB clicked!")}
+          />
+          <FloatingActionButton
+            icon={<Headset />}
+            variant="green"
+            onClick={() => alert("Green FAB clicked!")}
+          />
+        </div>
+      </section>
     </div>
   );
 };
