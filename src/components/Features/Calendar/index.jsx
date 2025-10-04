@@ -1,17 +1,17 @@
 "use client";
 
-import React, { useState } from "react";
+import { useState } from "react";
 import FullCalendar from "@fullcalendar/react";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
-import DialogBox from "@/components/ui/DialogBox";
+import CustomDialogBox from "@/components/ui/CustomDialogBox";
+import ReminderForm from "./component/ReminderForm";
 
 import "./calendar.css";
 
 const Calendar = () => {
   const [events, setEvents] = useState([]);
-
-  const [showModal, setShowModal] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   const [modalData, setModalData] = useState({ title: "", subtitle: "", endTime: "" });
   const [startTime, setStartTime] = useState(null);
   const [error, setError] = useState("");
@@ -20,10 +20,15 @@ const Calendar = () => {
     setStartTime(arg.date);
     setModalData({ title: "", subtitle: "", endTime: "" });
     setError("");
-    setShowModal(true);
+    setIsOpen(true);
   };
 
-  const handleConfirm = () => {
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setModalData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSaveReminder = () => {
     const { title, subtitle, endTime } = modalData;
     if (!title) {
       setError("Title is required.");
@@ -34,11 +39,11 @@ const Calendar = () => {
 
     let end;
     if (!endTime) {
-      end = new Date(start.getTime() + 60 * 60 * 1000); // default +1h
+      end = new Date(start.getTime() + 60 * 60 * 1000);
     } else {
-      const [endHour, endMinute] = endTime.split(":").map(Number);
+      const [hours, minutes] = endTime.split(":").map(Number);
       end = new Date(start);
-      end.setHours(endHour, endMinute, 0, 0);
+      end.setHours(hours, minutes, 0, 0);
 
       if (end <= start) {
         setError("End time must be after start time.");
@@ -46,17 +51,10 @@ const Calendar = () => {
       }
     }
 
-    let mergedEvent = {
-      id: String(Date.now()),
-      title,
-      start,
-      end,
-      extendedProps: { subtitle },
-    };
+    let mergedEvent = { id: String(Date.now()), title, start, end, extendedProps: { subtitle } };
 
     const updatedEvents = events.reduce((acc, ev) => {
       const sameDay = ev.start.toDateString() === start.toDateString();
-
       if (sameDay && ev.title === title && ev.extendedProps.subtitle === subtitle) {
         if (start < ev.end && end > ev.start) {
           mergedEvent = {
@@ -67,14 +65,13 @@ const Calendar = () => {
           return acc;
         }
       }
-
       acc.push(ev);
       return acc;
     }, []);
 
     updatedEvents.push(mergedEvent);
     setEvents(updatedEvents);
-    setShowModal(false);
+    setIsOpen(false);
   };
 
   const handleEventClick = (arg) => {
@@ -97,85 +94,30 @@ const Calendar = () => {
         headerToolbar={false}
         allDaySlot={false}
         slotDuration="01:00:00"
-        expandRows={true}
         slotLabelContent={slotLabelContent}
         dayHeaderFormat={{ weekday: "long" }}
         events={events}
         dateClick={handleDateClick}
         eventClick={handleEventClick}
-        editable={true}
-        selectable={true}
+        editable
+        selectable
         height="auto"
         eventContent={(arg) => (
           <div className="fc-reminder">
-            <div className="fc-reminder-title ">{arg.event.title}</div>
-            <div className="fc-reminder-subtitle ">{arg.event.extendedProps.subtitle}</div>
+            <div className="fc-reminder-title">{arg.event.title}</div>
+            <div className="fc-reminder-subtitle">{arg.event.extendedProps.subtitle}</div>
           </div>
         )}
       />
 
-      {/* Modal */}
-      <DialogBox
-        open={showModal}
-        onCancel={() => setShowModal(false)}
-        onConfirm={handleConfirm}
-        title="Add Reminder"
-        confirmButtonText="Add"
-        cancelButtonText="Cancel"
-        variant="primary"
-      >
-        <div className="space-y-4">
-          <div>
-            <label className="block text-sm font-medium text-gray-700">Title</label>
-            <input
-              type="text"
-              className="mt-1 w-full rounded-md border px-3 py-2 text-sm"
-              value={modalData.title}
-              onChange={(e) => setModalData({ ...modalData, title: e.target.value })}
-            />
-          </div>
-
-          <div>
-            <label className="block text-sm font-medium text-gray-700">Subtitle</label>
-            <input
-              type="text"
-              className="mt-1 w-full rounded-md border px-3 py-2 text-sm "
-              value={modalData.subtitle}
-              onChange={(e) => setModalData({ ...modalData, subtitle: e.target.value })}
-            />
-          </div>
-
-          <div>
-            <label className="block text-sm font-medium text-gray-700">Start Time</label>
-            <input
-              type="time"
-              className="mt-1 w-full cursor-not-allowed rounded-md border bg-gray-100 px-3 py-2 text-sm text-gray-600"
-              value={
-                startTime
-                  ? `${String(startTime.getHours()).padStart(2, "0")}:${String(
-                      startTime.getMinutes()
-                    ).padStart(2, "0")}`
-                  : ""
-              }
-              disabled
-            />
-          </div>
-
-          <div>
-            <label className="block text-sm font-medium text-gray-700">End Time (optional)</label>
-            <input
-              type="time"
-              step="60"
-              className="mt-1 w-full rounded-md border px-3 py-2 text-sm "
-              value={modalData.endTime}
-              onChange={(e) => setModalData({ ...modalData, endTime: e.target.value })}
-            />
-            <p className="mt-1 text-xs text-gray-500">Leave empty to create a 1-hour reminder.</p>
-          </div>
-
-          {error && <p className="text-sm text-red-600">{error}</p>}
-        </div>
-      </DialogBox>
+      <CustomDialogBox open={isOpen} onCancel={() => setIsOpen(false)} title="Add Reminder">
+        <ReminderForm
+          modalData={{ ...modalData, start: startTime }}
+          onChange={handleChange}
+          onSave={handleSaveReminder}
+          error={error}
+        />
+      </CustomDialogBox>
     </div>
   );
 };
