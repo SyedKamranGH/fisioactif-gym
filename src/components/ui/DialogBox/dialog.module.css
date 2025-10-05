@@ -1,0 +1,3 @@
+[data-radix-dialog-content]:focus {
+  outline: none !important;
+}
