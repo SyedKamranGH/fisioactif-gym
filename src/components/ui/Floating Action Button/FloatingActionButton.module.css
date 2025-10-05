@@ -1,0 +1,39 @@
+.fabButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  width: 56px;
+  height: 56px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  color: white;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  border: none;
+}
+
+.fabButton:hover {
+  transform: scale(1.1);
+}
+
+/* Variants */
+.fabGreen {
+  background-color: #007bff;
+}
+.fabGreen:hover {
+  background-color: #007bff;
+}
+
+.fabBlue {
+  background-color: #28a745;
+}
+.fabBlue:hover {
+  background-color: #218838;
+}
+
+.iconWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+}
