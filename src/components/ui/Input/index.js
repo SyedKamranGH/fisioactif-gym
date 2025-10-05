@@ -5,29 +5,36 @@ import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import styles from "./InputVariant.module.css";
 
 export default function InputField({
-  type = "search",
+  type = "text",
   placeholder = "Type here…",
+  value: propValue,
+  onChange: propOnChange,
   buttonText = "Subscribe",
   onSubmit = () => {},
+  ...rest
 }) {
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState(propValue || "");
   const [expanded, setExpanded] = useState(false);
+
+  const handleChange = (e) => {
+    if (propOnChange) {
+      propOnChange(e);
+    } else {
+      setValue(e.target.value);
+    }
+  };
 
   const inputField = (
     <input
       type="text"
-      value={value}
-      onChange={(e) => setValue(e.target.value)}
+      value={propValue !== undefined ? propValue : value}
+      onChange={handleChange}
       placeholder={placeholder}
       className={`px-4 py-2 focus:outline-none 
-                ${
-                  type === "underline"
-                    ? "border-black-300 border-b"
-                    : "rounded-full border border-gray-300"
-                }
-                ${type === "search" && !expanded ? "w-0 px-0 opacity-0" : "w-full"}
-                ${styles.slanted}
-              `}
+        ${type === "underline" ? "border-black-300 border-b" : "rounded-full border border-gray-300"}
+        ${type === "search" && !expanded ? "w-0 px-0 opacity-0" : "w-full"}
+        ${styles.slanted}`}
+      {...rest}
     />
   );
 
@@ -51,7 +58,7 @@ export default function InputField({
       <div className="flex items-center gap-2">
         {inputField}
         <button
-          onClick={() => onSubmit(value)}
+          onClick={() => onSubmit(propValue || value)}
           className="rounded-full bg-blue-600 px-4 py-2 text-white"
         >
           {buttonText}
@@ -60,7 +67,7 @@ export default function InputField({
     );
   }
 
-  if (type === "underline") {
+  if (type === "underline" || type === "text") {
     return <div className="full">{inputField}</div>;
   }
 
