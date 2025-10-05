@@ -10,6 +10,8 @@ import Calendar from "@/components/Features/Calendar";
 import Header from "@/components/layout/Header";
 import PageTitle from "@/components/layout/PageTitle";
 import SectionLayout from "@/components/layout/SectionLayout";
+import CustomCarousel from "@/components/Features/CustomCarousel";
+import Image from "next/image";
 
 const page = () => {
   // Team data for the carousel (8 team members)
@@ -31,24 +33,24 @@ const page = () => {
   const [playerReady, setPlayerReady] = useState(false);
 
   // Embla Carousel setup
-  const [emblaRef, emblaApi] = useEmblaCarousel({
-    loop: true,
-    align: "start",
-    slidesToScroll: 1,
-    breakpoints: {
-      "(min-width: 640px)": { slidesToScroll: 2 },
-      "(min-width: 768px)": { slidesToScroll: 3 },
-      "(min-width: 1024px)": { slidesToScroll: 4 },
-    },
-  });
+  // const [emblaRef, emblaApi] = useEmblaCarousel({
+  //   loop: true,
+  //   align: "start",
+  //   slidesToScroll: 1,
+  //   breakpoints: {
+  //     "(min-width: 640px)": { slidesToScroll: 2 },
+  //     "(min-width: 768px)": { slidesToScroll: 3 },
+  //     "(min-width: 1024px)": { slidesToScroll: 4 },
+  //   },
+  // });
 
-  const scrollPrev = useCallback(() => {
-    if (emblaApi) emblaApi.scrollPrev();
-  }, [emblaApi]);
+  // const scrollPrev = useCallback(() => {
+  //   if (emblaApi) emblaApi.scrollPrev();
+  // }, [emblaApi]);
 
-  const scrollNext = useCallback(() => {
-    if (emblaApi) emblaApi.scrollNext();
-  }, [emblaApi]);
+  // const scrollNext = useCallback(() => {
+  //   if (emblaApi) emblaApi.scrollNext();
+  // }, [emblaApi]);
 
   // Video player handlers with error handling
   const handlePlay = useCallback(() => {
@@ -307,7 +309,7 @@ const page = () => {
           </div>
 
           {/* Team Cards Carousel */}
-          <div className="mb-12">
+          {/* <div className="mb-12">
             <div className="mb-6 flex items-center justify-between">
               <h3 className="heading-3">Team Cards</h3>
               <div className="flex gap-2">
@@ -349,6 +351,42 @@ const page = () => {
                 ))}
               </div>
             </div>
+          </div> */}
+
+          <div className="space-y-24 bg-neutral-950 py-20 text-white">
+            {["largeShadow", "testimonial"].map((variant) => (
+              <section key={variant} className="w-full px-8">
+                <h2 className="mb-8 text-center text-2xl font-bold capitalize">
+                  Variant: {variant}
+                </h2>
+
+                <CustomCarousel
+                  variant={variant}
+                  loop
+                  autoplay
+                  autoplayInterval={4000}
+                  className="mx-auto max-w-6xl"
+                >
+                  {teamMembers.map((member, index) => (
+                    <CustomCarousel.Slide key={index} variant={variant}>
+                      <div className="flex flex-col items-center px-4 py-8 text-center">
+                        <div className="relative mb-4 h-28 w-28">
+                          <Image
+                            src={member.image}
+                            alt={member.name}
+                            width={112}
+                            height={112}
+                            className="rounded-full object-cover"
+                          />
+                        </div>
+                        <h3 className="text-lg font-semibold">{member.name}</h3>
+                        <p className="text-sm opacity-80">{member.role}</p>
+                      </div>
+                    </CustomCarousel.Slide>
+                  ))}
+                </CustomCarousel>
+              </section>
+            ))}
           </div>
 
           {/* Service Icons */}
