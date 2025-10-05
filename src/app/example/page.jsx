@@ -1,18 +1,96 @@
 "use client";
-import React from "react";
+import React, { useCallback, useState } from "react";
+import useEmblaCarousel from "embla-carousel-react";
+import ReactPlayer from "react-player";
 import CustomButton from "@/components/ui/Button";
-import { Search } from "lucide-react";
+import { Search, ChevronLeft, ChevronRight, Play, Pause, Volume2, VolumeX } from "lucide-react";
 import Breadcrumbs from "@/components/ui/Breadcrumbs/index";
 import InputField from "@/components/ui/Input";
 import Calendar from "@/components/Features/Calendar";
 import Header from "@/components/layout/Header";
 import PageTitle from "@/components/layout/PageTitle";
+import SectionLayout from "@/components/layout/SectionLayout";
 
 const page = () => {
+  // Team data for the carousel (8 team members)
+  const teamMembers = [
+    { name: "John Doe", role: "Fitness Trainer", image: "/Icons/icon_1.png" },
+    { name: "Jane Smith", role: "Nutritionist", image: "/Icons/icon_2.png" },
+    { name: "Mike Johnson", role: "Yoga Instructor", image: "/Icons/icon_3.png" },
+    { name: "Sarah Wilson", role: "Personal Trainer", image: "/Icons/icon_4.png" },
+    { name: "David Brown", role: "Pilates Instructor", image: "/Icons/icon_5.png" },
+    { name: "Lisa Garcia", role: "Strength Coach", image: "/Icons/icon_6.png" },
+    { name: "Tom Anderson", role: "Wellness Coach", image: "/Icons/icon_7.png" },
+    { name: "Emma Davis", role: "Cardio Specialist", image: "/Icons/icon_8.png" },
+  ];
+
+  // Video player state
+  const [playing, setPlaying] = useState(false);
+  const [muted, setMuted] = useState(false);
+  const [volume, setVolume] = useState(0.8);
+  const [playerReady, setPlayerReady] = useState(false);
+
+  // Embla Carousel setup
+  const [emblaRef, emblaApi] = useEmblaCarousel({
+    loop: true,
+    align: "start",
+    slidesToScroll: 1,
+    breakpoints: {
+      "(min-width: 640px)": { slidesToScroll: 2 },
+      "(min-width: 768px)": { slidesToScroll: 3 },
+      "(min-width: 1024px)": { slidesToScroll: 4 },
+    },
+  });
+
+  const scrollPrev = useCallback(() => {
+    if (emblaApi) emblaApi.scrollPrev();
+  }, [emblaApi]);
+
+  const scrollNext = useCallback(() => {
+    if (emblaApi) emblaApi.scrollNext();
+  }, [emblaApi]);
+
+  // Video player handlers with error handling
+  const handlePlay = useCallback(() => {
+    if (playerReady) {
+      setPlaying(true);
+    }
+  }, [playerReady]);
+
+  const handlePause = useCallback(() => {
+    setPlaying(false);
+  }, []);
+
+  const handleReady = useCallback(() => {
+    setPlayerReady(true);
+  }, []);
+
+  const handleError = useCallback((error) => {
+    console.warn("Video player error:", error);
+    setPlaying(false);
+  }, []);
+
   return (
     <div className="min-h-screen bg-neutral-50">
       {/* Header Component Showcase */}
       <Header />
+
+      <SectionLayout
+        backgroundImage="/Images/SectionLayoutBackground.png"
+        padding="py-24"
+        height="min-h-[640px]"
+      >
+        <div className="space-y-6 px-4 py-32 text-center text-black">
+          <h1 className="text-5xl font-bold">
+            Welcome to <span className="text-primary">FisioActif</span> Gym
+          </h1>
+          <p className="text-xl">Your premier destination for fitness and wellness</p>
+          <div className="mt-4 flex justify-center gap-4">
+            <button className="btn btn-primary btn-lg">Get Started</button>
+            <button className="btn btn-outline btn-lg">Learn More</button>
+          </div>
+        </div>
+      </SectionLayout>
 
       <PageTitle title="Component Examples" breadcrumbs={["Home", "Examples"]} />
 
@@ -228,30 +306,47 @@ const page = () => {
             </div>
           </div>
 
-          {/* Team Cards */}
+          {/* Team Cards Carousel */}
           <div className="mb-12">
-            <h3 className="heading-3 mb-6">Team Cards</h3>
-            <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-              <div className="team-card">
-                <div className="team-card-image bg-neutral-200"></div>
-                <div className="team-card-content">
-                  <h4 className="heading-4 mb-2">John Doe</h4>
-                  <p className="body-small text-neutral-600">Fitness Trainer</p>
-                </div>
+            <div className="mb-6 flex items-center justify-between">
+              <h3 className="heading-3">Team Cards</h3>
+              <div className="flex gap-2">
+                <button
+                  onClick={scrollPrev}
+                  className="flex h-10 w-10 items-center justify-center rounded-full bg-white shadow-md transition-colors hover:bg-neutral-50"
+                  aria-label="Previous team members"
+                >
+                  <ChevronLeft className="h-5 w-5" />
+                </button>
+                <button
+                  onClick={scrollNext}
+                  className="flex h-10 w-10 items-center justify-center rounded-full bg-white shadow-md transition-colors hover:bg-neutral-50"
+                  aria-label="Next team members"
+                >
+                  <ChevronRight className="h-5 w-5" />
+                </button>
               </div>
-              <div className="team-card">
-                <div className="team-card-image bg-neutral-200"></div>
-                <div className="team-card-content">
-                  <h4 className="heading-4 mb-2">Jane Smith</h4>
-                  <p className="body-small text-neutral-600">Nutritionist</p>
-                </div>
-              </div>
-              <div className="team-card">
-                <div className="team-card-image bg-neutral-200"></div>
-                <div className="team-card-content">
-                  <h4 className="heading-4 mb-2">Mike Johnson</h4>
-                  <p className="body-small text-neutral-600">Yoga Instructor</p>
-                </div>
+            </div>
+
+            <div className="embla overflow-hidden" ref={emblaRef}>
+              <div className="embla__container flex">
+                {teamMembers.map((member, index) => (
+                  <div key={index} className="embla__slide min-w-0 flex-[0_0_auto] pl-4">
+                    <div className="team-card">
+                      <div className="team-card-image bg-neutral-200">
+                        <img
+                          src={member.image}
+                          alt={member.name}
+                          className="h-full w-full rounded-t-lg object-cover"
+                        />
+                      </div>
+                      <div className="team-card-content">
+                        <h4 className="heading-4 mb-2">{member.name}</h4>
+                        <p className="body-small text-neutral-600">{member.role}</p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
@@ -287,6 +382,164 @@ const page = () => {
                 </div>
                 <h4 className="heading-5 mb-2">Nutrition</h4>
                 <p className="body-small text-neutral-600">Healthy eating plans</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* React Player Video Section */}
+      <section className="bg-white px-4 py-12">
+        <div className="container mx-auto">
+          <h2 className="heading-2 mb-8 text-center">Video Player Examples</h2>
+
+          {/* YouTube Video Example */}
+          <div className="mb-12">
+            <h3 className="heading-3 mb-6">YouTube Video Player</h3>
+            <div className="mx-auto max-w-4xl">
+              <div className="relative aspect-video overflow-hidden rounded-lg bg-neutral-900">
+                <ReactPlayer
+                  url="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+                  width="100%"
+                  height="100%"
+                  playing={playing}
+                  muted={muted}
+                  volume={volume}
+                  controls={true}
+                  onReady={handleReady}
+                  onPlay={handlePlay}
+                  onPause={handlePause}
+                  onError={handleError}
+                  config={{
+                    youtube: {
+                      playerVars: {
+                        modestbranding: 1,
+                        rel: 0,
+                        showinfo: 0,
+                      },
+                    },
+                  }}
+                />
+              </div>
+
+              {/* Player Status */}
+              {!playerReady && (
+                <div className="mt-4 text-center">
+                  <p className="text-sm text-neutral-600">Loading video player...</p>
+                </div>
+              )}
+
+              {/* Custom Controls */}
+              <div className="mt-4 flex items-center justify-center gap-4">
+                <button
+                  onClick={() => {
+                    if (playerReady) {
+                      setPlaying(!playing);
+                    }
+                  }}
+                  disabled={!playerReady}
+                  className="bg-primary hover:bg-primary/90 flex items-center gap-2 rounded-lg px-4 py-2 text-white transition-colors disabled:cursor-not-allowed disabled:bg-neutral-300"
+                >
+                  {playing ? <Pause className="h-4 w-4" /> : <Play className="h-4 w-4" />}
+                  {playing ? "Pause" : "Play"}
+                </button>
+
+                <button
+                  onClick={() => setMuted(!muted)}
+                  disabled={!playerReady}
+                  className="flex items-center gap-2 rounded-lg bg-neutral-200 px-4 py-2 transition-colors hover:bg-neutral-300 disabled:cursor-not-allowed disabled:bg-neutral-100"
+                >
+                  {muted ? <VolumeX className="h-4 w-4" /> : <Volume2 className="h-4 w-4" />}
+                  {muted ? "Unmute" : "Mute"}
+                </button>
+
+                <div className="flex items-center gap-2">
+                  <label className="text-sm font-medium">Volume:</label>
+                  <input
+                    type="range"
+                    min="0"
+                    max="1"
+                    step="0.1"
+                    value={volume}
+                    onChange={(e) => setVolume(parseFloat(e.target.value))}
+                    disabled={!playerReady}
+                    className="w-20 disabled:cursor-not-allowed disabled:opacity-50"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Multiple Video Sources */}
+          <div className="mb-12">
+            <h3 className="heading-3 mb-6">Multiple Video Sources</h3>
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+              {/* Vimeo Video */}
+              <div>
+                <h4 className="heading-4 mb-4">Vimeo Video</h4>
+                <div className="relative aspect-video overflow-hidden rounded-lg bg-neutral-900">
+                  <ReactPlayer
+                    url="https://vimeo.com/148751763"
+                    width="100%"
+                    height="100%"
+                    controls={true}
+                  />
+                </div>
+              </div>
+
+              {/* Direct Video File */}
+              <div>
+                <h4 className="heading-4 mb-4">Direct Video File</h4>
+                <div className="relative aspect-video overflow-hidden rounded-lg bg-neutral-900">
+                  <ReactPlayer
+                    url="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+                    width="100%"
+                    height="100%"
+                    controls={true}
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Video Player Features */}
+          <div className="mb-12">
+            <h3 className="heading-3 mb-6">Player Features</h3>
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+              <div className="card">
+                <div className="card-header">
+                  <h4 className="card-title">Multiple Platforms</h4>
+                  <p className="card-subtitle">YouTube, Vimeo, SoundCloud</p>
+                </div>
+                <div className="card-body">
+                  <p className="body-regular">
+                    Supports YouTube, Vimeo, SoundCloud, and direct video files.
+                  </p>
+                </div>
+              </div>
+
+              <div className="card">
+                <div className="card-header">
+                  <h4 className="card-title">Custom Controls</h4>
+                  <p className="card-subtitle">Full customization</p>
+                </div>
+                <div className="card-body">
+                  <p className="body-regular">
+                    Build custom controls and integrate with your design system.
+                  </p>
+                </div>
+              </div>
+
+              <div className="card">
+                <div className="card-header">
+                  <h4 className="card-title">Responsive Design</h4>
+                  <p className="card-subtitle">Mobile friendly</p>
+                </div>
+                <div className="card-body">
+                  <p className="body-regular">
+                    Automatically adapts to different screen sizes and orientations.
+                  </p>
+                </div>
               </div>
             </div>
           </div>

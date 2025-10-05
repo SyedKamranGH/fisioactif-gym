@@ -51,7 +51,13 @@ const Calendar = () => {
       }
     }
 
-    let mergedEvent = { id: String(Date.now()), title, start, end, extendedProps: { subtitle } };
+    let mergedEvent = {
+      id: String(Date.now()),
+      title,
+      start: startDate,
+      end: endDate,
+      extendedProps: { subtitle },
+    };
 
     const updatedEvents = events.reduce((acc, ev) => {
       const sameDay = ev.start.toDateString() === start.toDateString();
@@ -59,8 +65,8 @@ const Calendar = () => {
         if (start < ev.end && end > ev.start) {
           mergedEvent = {
             ...ev,
-            start: new Date(Math.min(ev.start.getTime(), start.getTime())),
-            end: new Date(Math.max(ev.end.getTime(), end.getTime())),
+            start: new Date(Math.min(ev.start.getTime(), startDate.getTime())),
+            end: new Date(Math.max(ev.end.getTime(), endDate.getTime())),
           };
           return acc;
         }
@@ -104,6 +110,8 @@ const Calendar = () => {
         height="auto"
         eventContent={(arg) => (
           <div className="fc-reminder">
+            <div className="fc-reminder-title">{arg.event.title}</div>
+            <div className="fc-reminder-subtitle">{arg.event.extendedProps.subtitle}</div>
             <div className="fc-reminder-title">{arg.event.title}</div>
             <div className="fc-reminder-subtitle">{arg.event.extendedProps.subtitle}</div>
           </div>
