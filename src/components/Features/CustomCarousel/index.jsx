@@ -6,25 +6,23 @@ import Controls from "./components/control";
 import Slide from "./components/slide";
 
 const VARIANT_STYLES = {
-  default: "gap-4 sm:gap-6",
   card: "gap-4 sm:gap-6",
-  banner: "gap-0",
   variable: "gap-3 sm:gap-5",
-  testimonial: "gap-6 sm:gap-8",
+  testimonial: "gap-0 sm:gap-0 w-full justify-center",
+  news: "gap-6 sm:gap-8 justify-start",
+  default: "gap-4 sm:gap-6",
 };
 
 const CustomCarousel = ({
   children,
   type = "card",
-  variant = "default",
   loop = true,
   autoplay = false,
   autoplayInterval = 5000,
-  variableWidth = false,
   align = "center",
   slidesToScroll = 1,
-  className,
   showControls = true,
+  className,
 }) => {
   const [emblaRef, emblaApi] = useEmblaCarousel(
     {
@@ -32,8 +30,6 @@ const CustomCarousel = ({
       align,
       containScroll: "trimSnaps",
       slidesToScroll,
-      skipSnaps: false,
-      watchSlides: true,
     },
     []
   );
@@ -54,16 +50,27 @@ const CustomCarousel = ({
 
   useEffect(() => {
     if (!autoplay || !emblaApi) return;
-    const interval = setInterval(() => emblaApi.scrollNext(), autoplayInterval);
+    const interval = setInterval(() => {
+      if (emblaApi.canScrollNext()) emblaApi.scrollNext();
+      else emblaApi.scrollTo(0);
+    }, autoplayInterval);
     return () => clearInterval(interval);
   }, [emblaApi, autoplay, autoplayInterval]);
 
   const scrollPrev = useCallback(() => emblaApi?.scrollPrev(), [emblaApi]);
   const scrollNext = useCallback(() => emblaApi?.scrollNext(), [emblaApi]);
 
+  const scrollTo = useCallback(
+    (index) => {
+      if (!emblaApi) return;
+      emblaApi.scrollTo(index);
+    },
+    [emblaApi]
+  );
+
   return (
     <div className={clsx("relative w-full", className)}>
-      <div className="embla overflow-hidden px-4 sm:px-6" ref={emblaRef}>
+      <div className="embla overflow-hidden" ref={emblaRef}>
         <div
           className={clsx(
             "embla__container flex items-stretch",
@@ -72,23 +79,26 @@ const CustomCarousel = ({
         >
           {React.Children.map(children, (child, index) =>
             React.cloneElement(child, {
-              key: index,
-              variant,
               index,
+              type,
               selected: selectedIndex === index,
-              variableWidth,
             })
           )}
         </div>
       </div>
 
+      {/* Controls */}
       {showControls && (
-        <Controls
-          onPrev={scrollPrev}
-          onNext={scrollNext}
-          slidesCount={React.Children.count(children)}
-          selectedIndex={selectedIndex}
-        />
+        <div className="mt-8 flex">
+          <Controls
+            onPrev={scrollPrev}
+            onNext={scrollNext}
+            onSelectSlide={scrollTo}
+            slidesCount={React.Children.count(children)}
+            selectedIndex={selectedIndex}
+            type={type}
+          />
+        </div>
       )}
     </div>
   );
