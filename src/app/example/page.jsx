@@ -6,6 +6,7 @@ import CustomButton from "@/components/ui/Button";
 import { ShoppingCart, Headset } from "lucide-react";
 import { Search, ChevronLeft, ChevronRight, Play, Pause, Volume2, VolumeX } from "lucide-react";
 import Breadcrumbs from "@/components/ui/Breadcrumbs/index";
+import CardExample from "@/components/ui/CustomCard/CardExample";
 import InputField from "@/components/ui/Input";
 import Calendar from "@/components/Features/Calendar";
 import Header from "@/components/layout/Header";
@@ -234,47 +235,7 @@ const page = () => {
       <section className="bg-white px-4 py-12">
         <div className="container mx-auto">
           <h2 className="heading-2 mb-8 text-center">Card Components</h2>
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-            <div className="card">
-              <div className="card-header">
-                <h3 className="card-title">Regular Card</h3>
-                <p className="card-subtitle">Standard card component</p>
-              </div>
-              <div className="card-body">
-                <p className="body-regular">
-                  This is a regular card with standard styling and hover effects.
-                </p>
-              </div>
-              <div className="card-footer">
-                <button className="btn btn-primary btn-sm">Action</button>
-              </div>
-            </div>
-
-            <div className="card-angled">
-              <div className="card-header">
-                <h3 className="card-title">Angled Card</h3>
-                <p className="card-subtitle">Card with angled corner</p>
-              </div>
-              <div className="card-body">
-                <p className="body-regular">
-                  This card features the signature angled corner design pattern.
-                </p>
-              </div>
-              <div className="card-footer">
-                <button className="btn btn-primary btn-sm">Action</button>
-              </div>
-            </div>
-
-            <div className="card card-compact">
-              <div className="card-header">
-                <h3 className="card-title">Compact Card</h3>
-                <p className="card-subtitle">Reduced padding</p>
-              </div>
-              <div className="card-body">
-                <p className="body-regular">Compact version with less padding for dense layouts.</p>
-              </div>
-            </div>
-          </div>
+          <CardExample />
         </div>
       </section>
 

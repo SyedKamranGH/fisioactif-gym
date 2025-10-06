@@ -1,0 +1,235 @@
+.cardBase {
+  background: #ffffff;
+  border-radius: var(--radius-md, 8px);
+  box-shadow: var(--shadow-md, 0 4px 12px rgba(0, 0, 0, 0.08));
+  overflow: hidden;
+  position: relative;
+}
+
+.cardSmall {
+  width: 250px;
+}
+
+.cardMedium {
+  width: 300px;
+}
+
+.cardLarge {
+  width: 350px;
+}
+
+/* Service card */
+.service {
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.serviceFeatured {
+  background: var(--color-primary, #e31e3f);
+  color: #fff;
+}
+
+/* Slanted card shape, similar to slanted button */
+.serviceSlanted {
+  position: relative;
+  background: #ffffff;
+  clip-path: polygon(6% 0%, 100% 0%, 94% 100%, 0% 100%);
+  box-shadow: var(--shadow-md, 0 4px 12px rgba(0, 0, 0, 0.08));
+  border: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.serviceSlanted::after {
+  content: "";
+  position: absolute;
+  right: 18px;
+  bottom: 18px;
+  width: 6px;
+  height: 42px;
+  background: #fff;
+  transform: skewX(-15deg);
+}
+
+.serviceSlantedFeatured {
+  background: var(--color-primary, #e31e3f);
+  color: #fff;
+}
+
+.serviceTitle {
+  font-family: var(--font-heading, Poppins), sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 1.3;
+  color: var(--color-text-primary, #1a1a1a);
+}
+
+.serviceDesc {
+  font-family: var(--font-primary, Inter), sans-serif;
+  font-size: 14px;
+  color: var(--color-text-secondary, #666666);
+  line-height: 1.6;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.iconCircle {
+  width: 64px;
+  height: 64px;
+  border: 2px solid currentColor;
+  border-radius: 9999px;
+  display: grid;
+  place-items: center;
+}
+
+/* Blog card */
+.blogImage {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  background: #eee;
+}
+
+.blogBody {
+  padding: 24px;
+}
+
+.metaRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #888888;
+  font-size: 12px;
+  font-family: var(--font-primary, Inter), sans-serif;
+}
+
+.metaAvatar {
+  width: 24px;
+  height: 24px;
+  border-radius: 9999px;
+  object-fit: cover;
+}
+
+.blogTitle {
+  margin-top: 16px;
+  font-family: var(--font-heading, Poppins), sans-serif;
+  font-weight: 600;
+  font-size: 18px;
+  color: var(--color-text-primary, #1a1a1a);
+}
+
+.blogExcerpt {
+  margin-top: 8px;
+  color: var(--color-text-secondary, #666666);
+  font-size: 14px;
+  line-height: 1.6;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Team card */
+.teamWrapper {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  position: relative;
+  background: #e5e5e5;
+}
+
+.teamImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.ribbon {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  background: var(--color-primary, #e31e3f);
+  color: #fff;
+  padding: 10px 16px;
+  transform: skewX(-15deg);
+  font-family: var(--font-heading, Poppins), sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.ribbonInner {
+  display: block;
+  transform: skewX(15deg);
+}
+
+/* ============================================
+   SLANTED DESIGN SYSTEM (Utilities)
+   ============================================ */
+.slantedElement {
+  position: relative;
+  transform: skewX(-15deg);
+  transform-origin: bottom left;
+}
+
+.slantedContent {
+  transform: skewX(15deg);
+}
+
+/* Slanted primary button pattern */
+.slantedButtonPrimary {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 24px;
+  height: 40px;
+  background: var(--color-primary, #e31e3f);
+  color: #fff;
+  font-family: var(--font-heading, Poppins), sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  isolation: isolate;
+  clip-path: polygon(8px 0, 100% 0, calc(100% - 8px) 100%, 0 100%);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.slantedButtonPrimary::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 100%);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.slantedButtonPrimary:hover::before {
+  opacity: 1;
+}
+
+.slantedButtonPrimary:hover {
+  background: var(--color-primary-dark, #c41232);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(227, 30, 63, 0.3);
+}
+
+.slantedButtonPrimary:active {
+  transform: translateY(0);
+}
+
+/* Outline variant for light/grey card */
+.slantedButtonOutline {
+  composes: slantedButtonPrimary;
+  background: #ffffff;
+  color: var(--color-text-primary, #1a1a1a);
+  border: 1px solid #0f172a;
+}
+
+.slantedButtonOutline:hover {
+  background: #f8fafc;
+}
