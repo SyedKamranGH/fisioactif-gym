@@ -3,6 +3,7 @@ import React, { useCallback, useState } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import ReactPlayer from "react-player";
 import CustomButton from "@/components/ui/Button";
+import { ShoppingCart, Headset } from "lucide-react";
 import { Search, ChevronLeft, ChevronRight, Play, Pause, Volume2, VolumeX } from "lucide-react";
 import Breadcrumbs from "@/components/ui/Breadcrumbs/index";
 import InputField from "@/components/ui/Input";
@@ -10,10 +11,14 @@ import Calendar from "@/components/Features/Calendar";
 import Header from "@/components/layout/Header";
 import PageTitle from "@/components/layout/PageTitle";
 import SectionLayout from "@/components/layout/SectionLayout";
+import FloatingActionButton from "@/components/ui/Floating Action Button/index";
 import CustomCarousel from "@/components/Features/CustomCarousel";
 import Image from "next/image";
 
 const page = () => {
+  const handleAddToCart = () => {
+    alert("Item added to cart!");
+  };
   // Team data for the carousel (8 team members)
   const teamMembers = [
     { name: "John Doe", role: "Fitness Trainer", image: "/Icons/icon_1.png" },
@@ -74,7 +79,6 @@ const page = () => {
 
   return (
     <div className="min-h-screen bg-neutral-50">
-      {/* Header Component Showcase */}
       <Header />
 
       <SectionLayout
@@ -692,11 +696,20 @@ const page = () => {
           </div>
         </div>
       </section>
-
-      {/* Floating Action Button */}
-      <a href="#" className="floating-action">
-        <span className="text-2xl">+</span>
-      </a>
+      <section>
+        <div className="fixed bottom-16 right-16 flex flex-col gap-4">
+          <FloatingActionButton
+            icon={<ShoppingCart />}
+            variant="blue"
+            onClick={() => alert("Blue FAB clicked!")}
+          />
+          <FloatingActionButton
+            icon={<Headset />}
+            variant="green"
+            onClick={() => alert("Green FAB clicked!")}
+          />
+        </div>
+      </section>
     </div>
   );
 };
