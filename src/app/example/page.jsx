@@ -12,6 +12,8 @@ import Header from "@/components/layout/Header";
 import PageTitle from "@/components/layout/PageTitle";
 import SectionLayout from "@/components/layout/SectionLayout";
 import FloatingActionButton from "@/components/ui/Floating Action Button/index";
+import CustomCarousel from "@/components/Features/CustomCarousel";
+import Image from "next/image";
 import VideoPlayer from "@/components/ui/Videoplayer/index";
 import CustomCheckbox from "@/components/ui/Checkbox";
 
@@ -42,24 +44,24 @@ const page = () => {
   const [playerReady, setPlayerReady] = useState(false);
 
   // Embla Carousel setup
-  const [emblaRef, emblaApi] = useEmblaCarousel({
-    loop: true,
-    align: "start",
-    slidesToScroll: 1,
-    breakpoints: {
-      "(min-width: 640px)": { slidesToScroll: 2 },
-      "(min-width: 768px)": { slidesToScroll: 3 },
-      "(min-width: 1024px)": { slidesToScroll: 4 },
-    },
-  });
+  // const [emblaRef, emblaApi] = useEmblaCarousel({
+  //   loop: true,
+  //   align: "start",
+  //   slidesToScroll: 1,
+  //   breakpoints: {
+  //     "(min-width: 640px)": { slidesToScroll: 2 },
+  //     "(min-width: 768px)": { slidesToScroll: 3 },
+  //     "(min-width: 1024px)": { slidesToScroll: 4 },
+  //   },
+  // });
 
-  const scrollPrev = useCallback(() => {
-    if (emblaApi) emblaApi.scrollPrev();
-  }, [emblaApi]);
+  // const scrollPrev = useCallback(() => {
+  //   if (emblaApi) emblaApi.scrollPrev();
+  // }, [emblaApi]);
 
-  const scrollNext = useCallback(() => {
-    if (emblaApi) emblaApi.scrollNext();
-  }, [emblaApi]);
+  // const scrollNext = useCallback(() => {
+  //   if (emblaApi) emblaApi.scrollNext();
+  // }, [emblaApi]);
 
   // Video player handlers with error handling
   const handlePlay = useCallback(() => {
@@ -341,7 +343,7 @@ const page = () => {
           </div>
 
           {/* Team Cards Carousel */}
-          <div className="mb-12">
+          {/* <div className="mb-12">
             <div className="mb-6 flex items-center justify-between">
               <h3 className="heading-3">Team Cards</h3>
               <div className="flex gap-2">
@@ -383,6 +385,83 @@ const page = () => {
                 ))}
               </div>
             </div>
+          </div> */}
+
+          <div className="space-y-20 bg-black py-10">
+            {/* Variable-width Showcase Carousel */}
+            <section className="bg-black px-4 py-10 sm:px-8">
+              <h2 className="mb-6 text-center text-2xl font-bold text-white">Showcase Carousel</h2>
+
+              <CustomCarousel type="variable" align="start" loop={true}>
+                {[
+                  { src: "/team1.jpg", width: "w-60" },
+                  { src: "/team2.jpg", width: "w-80" },
+                  { src: "/team3.jpg", width: "w-96" },
+                  { src: "/team4.jpg", width: "w-80" },
+                  { src: "/team5.jpg", width: "w-60" },
+                ].map((img, i) => (
+                  <CustomCarousel.Slide key={i} type="variable">
+                    <div
+                      className={`relative ${img.width} h-96 overflow-hidden rounded-2xl bg-neutral-900`}
+                    >
+                      <img
+                        src={img.src}
+                        alt={`Showcase ${i + 1}`}
+                        className="h-full w-full object-cover transition-transform duration-500 hover:scale-110"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
+                      <div className="absolute bottom-4 left-4 text-xl font-semibold text-white">
+                        {["HEALTH", "FITNESS", "WELLNESS", "LIFESTYLE", "NUTRITION"][i]}
+                      </div>
+                    </div>
+                  </CustomCarousel.Slide>
+                ))}
+              </CustomCarousel>
+            </section>
+
+            {/* Testimonial Carousel */}
+            <section className="px-4 sm:px-8">
+              <h2 className="mb-6 text-center text-2xl font-bold text-white">Testimonials</h2>
+              <CustomCarousel type="testimonial">
+                {[1, 2, 3].map((_, i) => (
+                  <CustomCarousel.Slide key={i} type="testimonial">
+                    <img
+                      src={`/avatar${i + 1}.jpg`}
+                      alt="User"
+                      className="mx-auto mb-4 h-20 w-20 rounded-full object-cover"
+                    />
+                    <p className="mb-4 italic text-gray-600">
+                      “This platform completely changed my daily routine!”
+                    </p>
+                    <h3 className="text-lg font-semibold">Jane Doe</h3>
+                    <p className="text-sm text-gray-500">Health Enthusiast</p>
+                  </CustomCarousel.Slide>
+                ))}
+              </CustomCarousel>
+            </section>
+
+            {/* News Feed Carousel */}
+            <section className="px-4 sm:px-8">
+              <h2 className="mb-1 text-2xl font-bold text-white">Latest News</h2>
+              <CustomCarousel type="card" align="start">
+                {[1, 2, 3, 4].map((_, i) => (
+                  <CustomCarousel.Slide key={i} type="card">
+                    <img
+                      src={`/news${i + 1}.jpg`}
+                      alt="News"
+                      className="h-48 w-full object-cover"
+                    />
+                    <div className="p-4">
+                      <h3 className="mb-2 text-lg font-semibold">Wellness Trends {2025 - i}</h3>
+                      <p className="mb-3 text-sm text-gray-600">
+                        Discover how holistic habits are transforming modern health routines...
+                      </p>
+                      <button className="text-blue-600 hover:underline">Read more →</button>
+                    </div>
+                  </CustomCarousel.Slide>
+                ))}
+              </CustomCarousel>
+            </section>
           </div>
 
           {/* Service Icons */}
