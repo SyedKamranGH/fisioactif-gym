@@ -4,7 +4,18 @@ import useEmblaCarousel from "embla-carousel-react";
 import ReactPlayer from "react-player";
 import CustomButton from "@/components/ui/Button";
 import { ShoppingCart, Headset } from "lucide-react";
-import { Search, Instagram, Facebook, Twitter,ChevronLeft, ChevronRight, Play, Pause, Volume2, VolumeX } from "lucide-react";
+import {
+  Search,
+  Instagram,
+  Facebook,
+  Twitter,
+  ChevronLeft,
+  ChevronRight,
+  Play,
+  Pause,
+  Volume2,
+  VolumeX,
+} from "lucide-react";
 import Breadcrumbs from "@/components/ui/Breadcrumbs/index";
 import InputField from "@/components/ui/Input";
 import Calendar from "@/components/Features/Calendar";
@@ -328,8 +339,6 @@ const page = () => {
         </div>
       </section>
 
-     
-
       <div>
         <Breadcrumbs breadcrumbItems={["Home", "Equipa"]} />
       </div>
@@ -579,10 +588,6 @@ const page = () => {
         <VideoPlayer url="https://www.youtube.com/watch?v=dQw4w9WgXcQ" />
       </div>
 
-
-
-
-      
       <section className="bg-white px-4 py-12">
         <div className="container mx-auto">
           <h2 className="heading-2 mb-8 text-center">Video Player Examples</h2>
