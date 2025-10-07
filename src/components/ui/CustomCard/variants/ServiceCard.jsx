@@ -1,5 +1,4 @@
 import React from "react";
-import Card from "../primitive/Card";
 import cardCls from "../styles/Card.module.css";
 import styles from "../styles/ServiceCard.module.css";
 
@@ -11,11 +10,20 @@ function ServiceCard({
   onButtonClick,
   variant = "standard",
   iconPosition = "top",
-  size = "medium",
+  size = "small",
   className = "",
 }) {
   const featured = variant === "featured";
-  const rootClass = `${styles.serviceCard} ${featured ? styles.featured : styles.standard} ${
+
+  // Size classes
+  const sizeClass =
+    size === "small"
+      ? cardCls.cardSmall
+      : size === "large"
+        ? cardCls.cardLarge
+        : cardCls.cardMedium;
+
+  const rootClass = `${styles.serviceCard} ${sizeClass} ${featured ? styles.featured : styles.standard} ${
     iconPosition === "left" ? styles.iconLeft : ""
   } ${className}`;
 
@@ -30,14 +38,16 @@ function ServiceCard({
   );
 
   return (
-    <Card size={size} className={rootClass}>
+    <div className={styles.cardContainer}>
       <div className={styles.iconWrapper}>{icon}</div>
-      <div className={styles.content}>
-        <h3 className={styles.title}>{title}</h3>
-        {description ? <p className={styles.description}>{description}</p> : null}
-        <div className={styles.buttonWrapper}>{ButtonEl}</div>
+      <div className={rootClass}>
+        <div className={styles.content}>
+          <h3 className={styles.title}>{title}</h3>
+          {description ? <p className={styles.description}>{description}</p> : null}
+          <div className={styles.buttonWrapper}>{ButtonEl}</div>
+        </div>
       </div>
-    </Card>
+    </div>
   );
 }
 

@@ -43,7 +43,10 @@ function CardExample() {
   ];
 
   return (
-    <div className="space-y-12">
+    <div
+      className="space-y-12"
+      style={{ backgroundColor: "gainsboro", padding: "32px", borderRadius: "8px" }}
+    >
       {/* Service Cards */}
       <div>
         <h3 className="heading-3 mb-6">Service Cards</h3>

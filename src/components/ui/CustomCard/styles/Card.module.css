@@ -2,20 +2,20 @@
   background: #ffffff;
   border-radius: var(--radius-md, 8px);
   box-shadow: var(--shadow-md, 0 4px 12px rgba(0, 0, 0, 0.08));
-  overflow: hidden;
+  overflow: visible; /* allow floating elements like icons to be visible */
   position: relative;
 }
 
 .cardSmall {
-  width: 250px;
+  width: 280px;
 }
 
 .cardMedium {
-  width: 300px;
+  width: 320px;
 }
 
 .cardLarge {
-  width: 350px;
+  width: 380px;
 }
 
 /* Service card */
