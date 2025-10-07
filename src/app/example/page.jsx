@@ -7,7 +7,6 @@ import InputField from "@/components/ui/Input";
 import Calendar from "@/components/Features/Calendar";
 import Header from "@/components/layout/Header";
 import PageTitle from "@/components/layout/PageTitle";
-import CheckboxComponent from "../../components/ui/checkbox/index";
 
 const page = () => {
   return (
@@ -393,9 +392,7 @@ function MyPage() {
         </div>
       </section>
 
-      <div style={{ padding: "100px" }}>
-        <CheckboxComponent />
-      </div>
+     
 
       <div>
         <Breadcrumbs breadcrumbItems={["Home", "Equipa"]} />
