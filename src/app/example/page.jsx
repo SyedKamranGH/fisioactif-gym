@@ -14,8 +14,14 @@ import SectionLayout from "@/components/layout/SectionLayout";
 import FloatingActionButton from "@/components/ui/Floating Action Button/index";
 import CustomCarousel from "@/components/Features/CustomCarousel";
 import Image from "next/image";
+import VideoPlayer from "@/components/ui/Videoplayer/index";
+import CustomCheckbox from "@/components/ui/Checkbox";
 
 const page = () => {
+  const [checked1, setChecked1] = useState(false);
+  const [checked2, setChecked2] = useState(true);
+  const [checked3, setChecked3] = useState(false);
+
   const handleAddToCart = () => {
     alert("Item added to cart!");
   };
@@ -97,6 +103,30 @@ const page = () => {
           </div>
         </div>
       </SectionLayout>
+
+      <div className="space-y-6 p-10">
+        <h2 className="mb-4 text-xl font-semibold">Checkbox Variants Demo</h2>
+
+        <div className="space-y-3">
+          <CustomCheckbox
+            id="chk-primary"
+            label="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+            checked={checked1}
+            onCheckedChange={setChecked1}
+            variant="primary"
+          />
+
+          <CustomCheckbox id="chk-disabled" label="Disabled Checkbox" checked={true} disabled />
+
+          <CustomCheckbox
+            id="chk-custom"
+            label="Custom Color (#060606ff)"
+            checked={checked3}
+            onCheckedChange={setChecked3}
+            color="#060606ff"
+          />
+        </div>
+      </div>
 
       <PageTitle title="Component Examples" breadcrumbs={["Home", "Examples"]} />
 
@@ -472,6 +502,15 @@ const page = () => {
       </section>
 
       {/* React Player Video Section */}
+      <div className="flex min-h-screen flex-col items-center justify-center space-y-8 bg-gray-100 p-6">
+        <h1 className="text-2xl font-bold text-gray-800">Video Player </h1>
+        <VideoPlayer url="https://www.youtube.com/watch?v=dQw4w9WgXcQ" />
+      </div>
+
+
+
+
+      
       <section className="bg-white px-4 py-12">
         <div className="container mx-auto">
           <h2 className="heading-2 mb-8 text-center">Video Player Examples</h2>
