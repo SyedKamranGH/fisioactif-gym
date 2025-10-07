@@ -1,40 +1,72 @@
 "use client";
 
-import React, { useState } from "react";
+import { useState } from "react";
 import FullCalendar from "@fullcalendar/react";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
+import CustomDialogBox from "@/components/ui/CustomDialogBox";
+import ReminderForm from "./component/ReminderForm";
 
 import "./calendar.css";
 
 const Calendar = () => {
   const [events, setEvents] = useState([]);
+  const [isOpen, setIsOpen] = useState(false);
+  const [modalData, setModalData] = useState({ title: "", subtitle: "", endTime: "" });
+  const [startTime, setStartTime] = useState(null);
+  const [error, setError] = useState("");
 
   const handleDateClick = (arg) => {
-    const title = prompt("Enter reminder title:");
-    if (!title) return;
+    setStartTime(arg.date);
+    setModalData({ title: "", subtitle: "", endTime: "" });
+    setError("");
+    setIsOpen(true);
+  };
 
-    const subtitle = prompt("Enter reminder subtitle:") || "";
-    const start = arg.date;
-    const end = new Date(start.getTime() + 60 * 60 * 1000);
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setModalData((prev) => ({ ...prev, [name]: value }));
+  };
 
-    let mergedEvent = { id: String(Date.now()), title, start, end, extendedProps: { subtitle } };
+  const handleSaveReminder = () => {
+    const { title, subtitle, endTime } = modalData;
+    if (!title) {
+      setError("Title is required.");
+      return;
+    }
+
+    const start = startTime;
+
+    let end;
+    if (!endTime) {
+      end = new Date(start.getTime() + 60 * 60 * 1000);
+    } else {
+      const [hours, minutes] = endTime.split(":").map(Number);
+      end = new Date(start);
+      end.setHours(hours, minutes, 0, 0);
+
+      if (end <= start) {
+        setError("End time must be after start time.");
+        return;
+      }
+    }
+
+    let mergedEvent = {
+      id: String(Date.now()),
+      title,
+      start: startDate,
+      end: endDate,
+      extendedProps: { subtitle },
+    };
 
     const updatedEvents = events.reduce((acc, ev) => {
-      if (
-        ev.title === title &&
-        ev.extendedProps.subtitle === subtitle &&
-        ev.start.getDay() === start.getDay()
-      ) {
-        if (
-          (start <= ev.end && end >= ev.start) ||
-          ev.end.getTime() === start.getTime() ||
-          ev.start.getTime() === end.getTime()
-        ) {
+      const sameDay = ev.start.toDateString() === start.toDateString();
+      if (sameDay && ev.title === title && ev.extendedProps.subtitle === subtitle) {
+        if (start < ev.end && end > ev.start) {
           mergedEvent = {
             ...ev,
-            start: new Date(Math.min(ev.start.getTime(), start.getTime())),
-            end: new Date(Math.max(ev.end.getTime(), end.getTime())),
+            start: new Date(Math.min(ev.start.getTime(), startDate.getTime())),
+            end: new Date(Math.max(ev.end.getTime(), endDate.getTime())),
           };
           return acc;
         }
@@ -45,6 +77,7 @@ const Calendar = () => {
 
     updatedEvents.push(mergedEvent);
     setEvents(updatedEvents);
+    setIsOpen(false);
   };
 
   const handleEventClick = (arg) => {
@@ -72,16 +105,27 @@ const Calendar = () => {
         events={events}
         dateClick={handleDateClick}
         eventClick={handleEventClick}
-        editable={true}
-        selectable={true}
+        editable
+        selectable
         height="auto"
         eventContent={(arg) => (
           <div className="fc-reminder">
-            <div className="fc-reminder-title ">{arg.event.title}</div>
-            <div className="fc-reminder-subtitle ">{arg.event.extendedProps.subtitle}</div>
+            <div className="fc-reminder-title">{arg.event.title}</div>
+            <div className="fc-reminder-subtitle">{arg.event.extendedProps.subtitle}</div>
+            <div className="fc-reminder-title">{arg.event.title}</div>
+            <div className="fc-reminder-subtitle">{arg.event.extendedProps.subtitle}</div>
           </div>
         )}
       />
+
+      <CustomDialogBox open={isOpen} onCancel={() => setIsOpen(false)} title="Add Reminder">
+        <ReminderForm
+          modalData={{ ...modalData, start: startTime }}
+          onChange={handleChange}
+          onSave={handleSaveReminder}
+          error={error}
+        />
+      </CustomDialogBox>
     </div>
   );
 };
