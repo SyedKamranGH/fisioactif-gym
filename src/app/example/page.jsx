@@ -27,6 +27,7 @@ import CustomCarousel from "@/components/Features/CustomCarousel";
 import Image from "next/image";
 import VideoPlayer from "@/components/ui/Videoplayer/index";
 import CustomCheckbox from "@/components/ui/Checkbox";
+import Avatar from "@/components/ui/Avatar";
 
 const page = () => {
   const [checked1, setChecked1] = useState(false);
@@ -48,31 +49,58 @@ const page = () => {
     { name: "Emma Davis", role: "Cardio Specialist", image: "/Icons/icon_8.png" },
   ];
 
+  const avatarPositions = [
+    // LEFT SIDE
+    {
+      src: "/Images/User.png",
+      size: 80,
+      duration: 2.8,
+      delay: 0.2,
+      style: { top: "10%", left: "10%" },
+    },
+    {
+      src: "/Images/User.png",
+      size: 100,
+      duration: 3.2,
+      delay: 0.6,
+      style: { top: "40%", left: "20%" },
+    },
+    {
+      src: "/Images/User.png",
+      size: 70,
+      duration: 2.5,
+      delay: 1.2,
+      style: { bottom: "19%", left: "12%" },
+    },
+    // RIGHT SIDE
+    {
+      src: "/Images/User.png",
+      size: 80,
+      duration: 3.5,
+      delay: 0.4,
+      style: { top: "8%", right: "20%" },
+    },
+    {
+      src: "/Images/User.png",
+      size: 100,
+      duration: 2.7,
+      delay: 0.9,
+      style: { top: "30%", right: "6%" },
+    },
+    {
+      src: "/Images/User.png",
+      size: 70,
+      duration: 3.1,
+      delay: 1.5,
+      style: { bottom: "25%", right: "20%" },
+    },
+  ];
+
   // Video player state
   const [playing, setPlaying] = useState(false);
   const [muted, setMuted] = useState(false);
   const [volume, setVolume] = useState(0.8);
   const [playerReady, setPlayerReady] = useState(false);
-
-  // Embla Carousel setup
-  // const [emblaRef, emblaApi] = useEmblaCarousel({
-  //   loop: true,
-  //   align: "start",
-  //   slidesToScroll: 1,
-  //   breakpoints: {
-  //     "(min-width: 640px)": { slidesToScroll: 2 },
-  //     "(min-width: 768px)": { slidesToScroll: 3 },
-  //     "(min-width: 1024px)": { slidesToScroll: 4 },
-  //   },
-  // });
-
-  // const scrollPrev = useCallback(() => {
-  //   if (emblaApi) emblaApi.scrollPrev();
-  // }, [emblaApi]);
-
-  // const scrollNext = useCallback(() => {
-  //   if (emblaApi) emblaApi.scrollNext();
-  // }, [emblaApi]);
 
   // Video player handlers with error handling
   const handlePlay = useCallback(() => {
@@ -114,6 +142,20 @@ const page = () => {
           </div>
         </div>
       </SectionLayout>
+
+      <div className="relative h-[100vh] overflow-hidden bg-gradient-to-tr from-[#FFF1F1] to-[#FFD8B1]">
+        <h1 className="pt-10 text-center text-4xl font-bold">Testimonials with Animated Avatars</h1>
+
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="rounded-2xl bg-white/80 p-10 text-center shadow-xl backdrop-blur-sm">
+            <p className="text-lg font-medium">Testimonial carousel placeholder</p>
+          </div>
+        </div>
+
+        {avatarPositions.map((avatar, index) => (
+          <Avatar key={index} variant="animated" {...avatar} />
+        ))}
+      </div>
 
       <div className="space-y-6 p-10">
         <h2 className="mb-4 text-xl font-semibold">Checkbox Variants Demo</h2>
@@ -422,51 +464,6 @@ const page = () => {
               </a>
             </div>
           </div>
-
-          {/* Team Cards Carousel */}
-          {/* <div className="mb-12">
-            <div className="mb-6 flex items-center justify-between">
-              <h3 className="heading-3">Team Cards</h3>
-              <div className="flex gap-2">
-                <button
-                  onClick={scrollPrev}
-                  className="flex h-10 w-10 items-center justify-center rounded-full bg-white shadow-md transition-colors hover:bg-neutral-50"
-                  aria-label="Previous team members"
-                >
-                  <ChevronLeft className="h-5 w-5" />
-                </button>
-                <button
-                  onClick={scrollNext}
-                  className="flex h-10 w-10 items-center justify-center rounded-full bg-white shadow-md transition-colors hover:bg-neutral-50"
-                  aria-label="Next team members"
-                >
-                  <ChevronRight className="h-5 w-5" />
-                </button>
-              </div>
-            </div>
-
-            <div className="embla overflow-hidden" ref={emblaRef}>
-              <div className="embla__container flex">
-                {teamMembers.map((member, index) => (
-                  <div key={index} className="embla__slide min-w-0 flex-[0_0_auto] pl-4">
-                    <div className="team-card">
-                      <div className="team-card-image bg-neutral-200">
-                        <img
-                          src={member.image}
-                          alt={member.name}
-                          className="h-full w-full rounded-t-lg object-cover"
-                        />
-                      </div>
-                      <div className="team-card-content">
-                        <h4 className="heading-4 mb-2">{member.name}</h4>
-                        <p className="body-small text-neutral-600">{member.role}</p>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div> */}
 
           <div className="space-y-20 bg-black py-10">
             {/* Variable-width Showcase Carousel */}
