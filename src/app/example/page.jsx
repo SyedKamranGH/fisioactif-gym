@@ -12,8 +12,13 @@ import Header from "@/components/layout/Header";
 import PageTitle from "@/components/layout/PageTitle";
 import SectionLayout from "@/components/layout/SectionLayout";
 import FloatingActionButton from "@/components/ui/Floating Action Button/index";
+import CustomCheckbox from "@/components/ui/Checkbox";
 
 const page = () => {
+  const [checked1, setChecked1] = useState(false);
+  const [checked2, setChecked2] = useState(true);
+  const [checked3, setChecked3] = useState(false);
+
   const handleAddToCart = () => {
     alert("Item added to cart!");
   };
@@ -95,6 +100,30 @@ const page = () => {
           </div>
         </div>
       </SectionLayout>
+
+      <div className="space-y-6 p-10">
+        <h2 className="mb-4 text-xl font-semibold">Checkbox Variants Demo</h2>
+
+        <div className="space-y-3">
+          <CustomCheckbox
+            id="chk-primary"
+            label="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+            checked={checked1}
+            onCheckedChange={setChecked1}
+            variant="primary"
+          />
+
+          <CustomCheckbox id="chk-disabled" label="Disabled Checkbox" checked={true} disabled />
+
+          <CustomCheckbox
+            id="chk-custom"
+            label="Custom Color (#060606ff)"
+            checked={checked3}
+            onCheckedChange={setChecked3}
+            color="#060606ff"
+          />
+        </div>
+      </div>
 
       <PageTitle title="Component Examples" breadcrumbs={["Home", "Examples"]} />
 
