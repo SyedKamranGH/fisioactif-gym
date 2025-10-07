@@ -6,6 +6,7 @@
 @import "@radix-ui/themes/styles.css";
 @import "../components/ui/DialogBox/dialog.module.css";
 
+
 :root {
   /* Color System */
   --color-primary: #e31e3f;
