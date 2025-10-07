@@ -37,9 +37,9 @@ function CardExample() {
   ];
 
   const team = [
-    { image: "/Icons/icon_1.png", name: "LOREM" },
-    { image: "/Icons/icon_2.png", name: "IPSUM" },
-    { image: "/Icons/icon_3.png", name: "DOLOR" },
+    { image: "/Icons/icon_1.png", name: "LOREM", role: "Lorem Ipsum" },
+    { image: "/Icons/icon_2.png", name: "IPSUM", role: "Lorem Ipsum" },
+    { image: "/Icons/icon_3.png", name: "DOLOR", role: "Lorem Ipsum" },
   ];
 
   return (
