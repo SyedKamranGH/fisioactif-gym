@@ -4,8 +4,12 @@
 @import "../styles/patterns.css";
 @import "../styles/utilities.css";
 @import "@radix-ui/themes/styles.css";
+<<<<<<< HEAD
+@import "../components/ui/Button/Button.module.css";
+=======
 @import "../components/ui/DialogBox/dialog.module.css";
 
+>>>>>>> main
 
 :root {
   /* Color System */

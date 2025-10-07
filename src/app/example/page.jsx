@@ -4,7 +4,7 @@ import useEmblaCarousel from "embla-carousel-react";
 import ReactPlayer from "react-player";
 import CustomButton from "@/components/ui/Button";
 import { ShoppingCart, Headset } from "lucide-react";
-import { Search, ChevronLeft, ChevronRight, Play, Pause, Volume2, VolumeX } from "lucide-react";
+import { Search, Instagram, Facebook, Twitter,ChevronLeft, ChevronRight, Play, Pause, Volume2, VolumeX } from "lucide-react";
 import Breadcrumbs from "@/components/ui/Breadcrumbs/index";
 import InputField from "@/components/ui/Input";
 import Calendar from "@/components/Features/Calendar";
@@ -180,6 +180,7 @@ const page = () => {
         {" "}
         <Calendar />
       </div>
+
       {/* Typography Showcase */}
       <section className="px-4 py-12">
         <div className="container mx-auto">
@@ -239,24 +240,95 @@ const page = () => {
       </section>
 
       {/* Button Components */}
-
+      <h1 className="mb-8 text-center text-3xl font-bold">Button Component</h1>
       <section className="px-4 py-12">
-        <div className="flex justify-center gap-4">
-          {/* Search Button */}
+        <div className="flex flex-wrap justify-center gap-4">
           <CustomButton
             variant="search"
+            color="gray"
             icon={<Search />}
             onClick={() => console.log("Search clicked")}
           />
 
-          {/* Slanted Button */}
           <CustomButton
             label="Consulta"
             variant="slanted"
+            color="red"
             onClick={() => console.log("Consulta clicked")}
+          />
+
+          <CustomButton
+            label="Marcacao"
+            variant="slanted"
+            color="red"
+            onClick={() => console.log("Marcacao clicked")}
+          />
+
+          <CustomButton
+            label="Subscrever"
+            variant="slanted"
+            color="red"
+            onClick={() => console.log("Subscrever clicked")}
+            style={{ backgroundColor: "black", color: "white" }}
+          />
+
+          <CustomButton
+            label="Começar"
+            variant="slanted"
+            color="red"
+            onClick={() => console.log("Começar clicked")}
+          />
+
+          <CustomButton
+            label="Saiba Mais"
+            variant="slanted"
+            color="red"
+            onClick={() => console.log("Saiba Mais clicked")}
+          />
+
+          <CustomButton
+            label="Ler Mais"
+            variant="slanted"
+            color="red"
+            onClick={() => console.log("Ler Mais clicked")}
+          />
+
+          <CustomButton
+            label="Ver Tudo"
+            variant="slanted"
+            color="red"
+            onClick={() => console.log("Ver Tudo clicked")}
           />
         </div>
       </section>
+
+      {/* Section 2: Social Icon Buttons */}
+      <section className="px-4 py-8">
+        <div className="flex justify-center gap-4">
+          <CustomButton
+            variant="social"
+            icon={<Twitter />}
+            color="blue"
+            onClick={() => console.log("Twitter clicked")}
+          />
+
+          <CustomButton
+            variant="social"
+            icon={<Instagram />}
+            color="pink"
+            onClick={() => console.log("Instagram clicked")}
+          />
+
+          <CustomButton
+            variant="social"
+            icon={<Facebook />}
+            color="blue"
+            onClick={() => console.log("Facebook clicked")}
+          />
+        </div>
+      </section>
+
+     
 
       <div>
         <Breadcrumbs breadcrumbItems={["Home", "Equipa"]} />
