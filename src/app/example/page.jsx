@@ -15,6 +15,7 @@ import {
   Pause,
   Volume2,
   VolumeX,
+  Phone,
 } from "lucide-react";
 import Breadcrumbs from "@/components/ui/Breadcrumbs/index";
 import InputField from "@/components/ui/Input";
@@ -28,6 +29,7 @@ import Image from "next/image";
 import VideoPlayer from "@/components/ui/Videoplayer/index";
 import CustomCheckbox from "@/components/ui/Checkbox";
 import Avatar from "@/components/ui/Avatar";
+import Label from "@/components/ui/Labels";
 
 const page = () => {
   const [checked1, setChecked1] = useState(false);
@@ -96,6 +98,13 @@ const page = () => {
     },
   ];
 
+  const features = [
+    { src: "/Images/logo1.png", label: "Gym & Exercise" },
+    { src: "/Images/logo2.png", label: "Health & Fitness" },
+    { src: "/Images/logo3.png", label: "Health Motivation" },
+    { src: "/Images/logo4.png", label: "Right Nutrition" },
+  ];
+
   // Video player state
   const [playing, setPlaying] = useState(false);
   const [muted, setMuted] = useState(false);
@@ -142,6 +151,28 @@ const page = () => {
           </div>
         </div>
       </SectionLayout>
+      <div className="mb-8 flex flex-wrap gap-4">
+        {features.map((feature) => (
+          <Label key={feature.label} icon={feature.src} label={feature.label} color="red" />
+        ))}
+        <Label label="High Quality Video" color="red" size="md" motion />
+        <Label label="Professional Trainer" color="red" size="md" motion />
+        <Label
+          variant="call"
+          icon={Phone}
+          buzzIcon
+          sublabel="Call us for help"
+          label="090078601"
+          color="red"
+        />
+
+        <Label
+          variant="section"
+          color="red"
+          sublabel="OUR SERVICES"
+          label="Bring Your Fitness Ideas To Life"
+        />
+      </div>
 
       <div className="relative h-[100vh] overflow-hidden bg-gradient-to-tr from-[#FFF1F1] to-[#FFD8B1]">
         <h1 className="pt-10 text-center text-4xl font-bold">Testimonials with Animated Avatars</h1>
