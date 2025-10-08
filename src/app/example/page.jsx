@@ -27,6 +27,7 @@ import CustomCarousel from "@/components/Features/CustomCarousel";
 import Image from "next/image";
 import VideoPlayer from "@/components/ui/Videoplayer/index";
 import CustomCheckbox from "@/components/ui/Checkbox";
+import Refactorfloatingaction from "@/components/ui/Refactorfloatingaction";
 
 const page = () => {
   const [checked1, setChecked1] = useState(false);
@@ -813,16 +814,18 @@ const page = () => {
         </div>
       </section>
       <section>
-        <div className="fixed bottom-16 right-16 flex flex-col gap-4">
-          <FloatingActionButton
+        <div className="fixed bottom-16 left-16 flex flex-col gap-4">
+          <Refactorfloatingaction
             icon={<ShoppingCart />}
-            variant="blue"
-            onClick={() => alert("Blue FAB clicked!")}
-          />
-          <FloatingActionButton
-            icon={<Headset />}
+            label="SUPPORT"
             variant="green"
-            onClick={() => alert("Green FAB clicked!")}
+            onClick={() => alert("SUPPORT!")}
+          />
+          <Refactorfloatingaction
+            icon={<Headset />}
+            label="BUY NOW"
+            variant="blue"
+            onClick={() => alert("BUY NOW!")}
           />
         </div>
       </section>

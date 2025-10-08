@@ -1,0 +1,79 @@
+.fabButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  width: 56px;
+  height: 56px;
+  border: none;
+  color: white; 
+  cursor: pointer;
+  transition: all 0.3s ease;
+  overflow: hidden;
+  white-space: nowrap;
+  opacity: 1;
+  position: relative;
+  padding: 0;
+}
+
+/*  hover expand */
+.fabButton:hover {
+  width: 150px;
+  border-radius: 50px;
+  opacity: 0.95;
+  padding-left: 18px;
+}
+
+/* Wrapper to control icon + label */
+.iconWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 2;
+  transform: translateX(0);
+  color: inherit; 
+}
+
+/* Move icon slightly left only when hovered */
+.fabButton:hover .iconWrapper {
+  transform: translateX(-40px);
+}
+
+/* Label setup */
+.label {
+  position: absolute;
+  left: 65px;
+  opacity: 0;
+  font-size: 15px;
+  transition: opacity 0.3s ease;
+  z-index: 1;
+  color: inherit; 
+  pointer-events: none;
+}
+
+/* Label appears on hover */
+.fabButton:hover .label {
+  opacity: 1;
+}
+
+/* Variants */
+.fabGreen {
+  background: linear-gradient(90deg, #cbe582, #7f9b1a);
+  color: white; 
+}
+.fabGreen:hover {
+  background: linear-gradient(90deg, #cbe582, #7f9b1a);
+  color: white;
+}
+
+.fabBlue {
+  background: linear-gradient(90deg, #02bff8, #087ca0);
+  color: white; 
+}
+.fabBlue:hover {
+  background: linear-gradient(90deg, #02bff8, #087ca0);
+  color: white;
+}
